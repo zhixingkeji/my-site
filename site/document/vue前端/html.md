@@ -583,10 +583,10 @@ value 按键上显示的文字 默认为"重置"
 
 
 
-   ```html
+```html
 <input type="file"></input>
 <input type="image"></input>
-   ```
+```
 
 
 
