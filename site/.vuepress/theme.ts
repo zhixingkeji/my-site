@@ -144,6 +144,10 @@ export default hopeTheme({
                         text: "uniapp",
                         link: "uniapp",
                     },
+                    {
+                        text: "electron",
+                        link: "electron",
+                    },
 
                     {
                         text: "vuepress",
@@ -228,30 +232,34 @@ export default hopeTheme({
         "/document/数据库": [
 
             {
-                text: "vue3教程",
+                text: "mysql教程",
                 icon: "edit",
 
-                link: "vue3教程",
+                link: "mysql",
 
 
             },
             {
-                text: "vue2教程",
+                text: "redis教程",
 
                 icon: "edit",
-                link: "vue2教程",
+                link: "redis",
 
 
             },
             {
-                text: "uniapp教程",
-
+                text: "mongodb教程",
                 icon: "edit",
-                link: "uniapp",
+                link: "mongodb",
+            },
 
-
+            {
+                text: "elasticsearch教程",
+                icon: "edit",
+                link: "elasticsearch",
             },
         ],
+
 
         //java后端笔记
         "/document/java后端": [
@@ -282,6 +290,7 @@ export default hopeTheme({
             },
         ],
 
+
         //python全栈笔记
         "/document/python全栈": [
 
@@ -311,6 +320,7 @@ export default hopeTheme({
             },
         ],
 
+
         //linux运维笔记
         "/document/linux运维": [
 
@@ -330,8 +340,72 @@ export default hopeTheme({
 
 
             },
+            {
+                text: "k8s教程",
+                icon: "edit",
 
+                link: "k8s",
+
+
+            },
+            {
+                text: "jenkins教程",
+                icon: "edit",
+
+                link: "jenkins",
+
+
+            },
+            {
+                text: "prometheus教程",
+                icon: "edit",
+
+                link: "prometheus",
+
+
+            },
+            {
+                text: "nginx教程",
+                icon: "edit",
+
+                link: "nginx",
+
+
+            },
+            {
+                text: "linux教程",
+                icon: "edit",
+
+                link: "linux",
+
+
+            },
+            {
+                text: "shell教程",
+                icon: "edit",
+
+                link: "shell",
+
+
+            },
+            {
+                text: "win教程",
+                icon: "edit",
+
+                link: "win",
+
+
+            },
+            {
+                text: "mac教程",
+                icon: "edit",
+
+                link: "mac",
+
+
+            },
         ],
+
 
         //高数英语笔记
         "/document/高数英语": [
@@ -361,6 +435,8 @@ export default hopeTheme({
 
             },
         ],
+
+
     },
 
     footer: "默认页脚",

@@ -769,4 +769,123 @@ npm install markdown-it --save
 npm install github-markdown-css
 
 
+## 第5章 axios
+
+### 5.1 概念
+
+Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中
+
+### 5.2 特点
+
+-   从浏览器中创建 [XMLHttpRequests](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
+-   从 node.js 创建 [http](http://nodejs.org/api/http.html) 请求
+-   支持 [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) API
+-   拦截请求和响应
+-   转换请求数据和响应数据
+-   取消请求
+-   自动转换 JSON 数据
+-   客户端支持防御 XSRF
+
+### 5.3 安装
+
+```shell
+cnpm install axios
+```
+
+### 5.4 发送请求
+
+原生请求
+
+```js
+// 获取远端图片
+axios({
+  method:'get',
+  url:'http://bit.ly/2mTM3nY',
+  responseType:'stream'
+})
+  .then(function(response) {
+  response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
+});
+```
+
+封装的请求方法
+
+```js
+axios.request(config)
+axios.get(url[, config])
+axios.delete(url[, config])
+axios.head(url[, config])
+axios.options(url[, config])
+axios.post(url[, data[, config]])
+axios.put(url[, data[, config]])
+axios.patch(url[, data[, config]])
+axios.all()  //执行并发请求
+```
+
+### 5.5 配置拦截
+
+### 5.6 封装项目api
+
+
+
+## 第6章 vue-router
+
+### 6.1 vue路由
+
+
+
+动态路由遍历菜单
+
+
+
+在组件中获取 router  route
+
+```js
+import { useRouter, useRoute } from 'vue-router'
+
+export default {
+  setup() {
+    const router = useRouter()
+    const route = useRoute()
+  }
+}
+```
+
+
+## 第7章 vuex
+
+
+
+
+### 7.1 在组件内获取store
+
+```js
+import {useStore} from "vuex";
+
+const store = useStore()
+```
+
+
+在state里定义数据
+
+在muation里定义set方法
+
+在getters里定义getter方法
+
+在modules里定义模块
+
+
+cookie
+
+localstore  本地存储空间
+
+sessionstore  会话存储空间 区别
+
+
+组件内提交
+
+```js
+store.commit('SET_TOKEN',jwt)
+```
+
 
