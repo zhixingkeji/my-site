@@ -162,6 +162,15 @@ export default hopeTheme({
 
             },
 
+            //  c#教程
+            {
+                text: "php教程",
+                icon: "edit",
+
+                link: "php",
+
+            },
+
         ],
 
 
