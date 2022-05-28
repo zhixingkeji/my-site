@@ -411,26 +411,53 @@ export default hopeTheme({
         "/document/高数英语": [
 
             {
-                text: "vue3教程",
+                text: "初等数学",
                 icon: "edit",
 
-                link: "vue3教程",
+                link: "初等数学",
 
 
             },
             {
-                text: "vue2教程",
+                text: "高等数学",
 
                 icon: "edit",
-                link: "vue2教程",
+                link: "高等数学",
 
 
             },
             {
-                text: "uniapp教程",
+                text: "线性代数",
 
                 icon: "edit",
-                link: "uniapp",
+                link: "线性代数",
+
+
+            },
+
+            {
+                text: "概率统计",
+
+                icon: "edit",
+                link: "概率统计",
+
+
+            },
+
+            {
+                text: "离散数学",
+
+                icon: "edit",
+                link: "离散数学",
+
+
+            },
+
+            {
+                text: "英语四级",
+
+                icon: "edit",
+                link: "英语四级",
 
 
             },
