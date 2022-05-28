@@ -58,6 +58,14 @@ export default hopeTheme({
 
 
       },
+      {
+        text: "uniapp教程",
+
+        icon: "edit",
+        link: "uniapp",
+
+
+      },
     ]
   },
 
