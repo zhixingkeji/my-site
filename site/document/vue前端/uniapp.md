@@ -117,8 +117,8 @@ npm install sass-loader dart-sass
 
 ```js
 <view v-for="(item,index) in list" :key="item.id">
-  {{item.text}}
-  </view>
+    {{item.text}}
+</view>
 ```
 
 
@@ -145,15 +145,15 @@ v-show   适合频繁切换
 
 ```js
 computed:{
-  cvMoney(){
-    //计算属性的加工功能
-    return "$" + this.money
-  }
-  filtList(){
-    //计算属性的过滤功能
-    //过滤掉id小于0的对象
-    return this.list.filter(v => v.id <= 0)
-  }
+    cvMoney(){
+        //计算属性的加工功能
+        return "$" + this.money
+    }
+    filtList(){
+        //计算属性的过滤功能
+        //过滤掉id小于0的对象
+        return this.list.filter(v => v.id <= 0)
+    }
 }
 ```
 
@@ -177,10 +177,10 @@ computed:{
 
 ```js
 methods:{
-  handleClick(){
-    console.log("这里是函数内容")
-  }
-  
+    handleClick(){
+        console.log("这里是函数内容")
+    }
+
 }
 ```
 
@@ -230,7 +230,7 @@ import imgBorder from "@/components/img-border";
 
 ```js
 components:{
-  imgBorder
+    imgBorder
 }
 ```
 
@@ -262,9 +262,9 @@ components:{
 
 ```js
 props:{
-  list: Array
+    list: Array
 },
-  
+
 ```
 
 
@@ -277,9 +277,9 @@ props:{
 <view @click="clickHandler></view>
 
 methods:{
-  clickHandler(){
-    this.$emit("srcChange","内容")
-  }
+    clickHandler(){
+        this.$emit("srcChange","内容")
+    }
 }
 ```
 
@@ -293,9 +293,9 @@ e形参就是子组件传过来的参数
 <view @srcChange="HandlerSrcChange></view>
 
 methods:{
-  HandlersrcChange(e){
-    console.log(e)
-  }
+    HandlersrcChange(e){
+        console.log(e)
+    }
 }
 ```
 
@@ -325,7 +325,7 @@ methods:{
 
 ```js
 globalData:{
-	base:"www.badiu.com"
+    base:"www.badiu.com"
 }
 ```
 
@@ -367,7 +367,7 @@ globalData:{
 
 ```js
 <tab-Bar>
-	<view>要插入的标签内容</view>
+    <view>要插入的标签内容</view>
 </tab-Bar>
 ```
 
