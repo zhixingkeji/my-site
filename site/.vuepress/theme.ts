@@ -59,68 +59,80 @@ export default hopeTheme({
                 text: "css教程",
 
                 icon: "edit",
-                link: "css",
+                collapsable: true,
+                children: [
+                    {
+                        text: "css",
+                        link: "css"
 
+                    },
+                    {
+                        text: "scss",
+                        link: "scss"
+
+                    },
+                    {
+                        text: "less",
+                        link: "less"
+
+                    },
+
+                ]
 
             },
 
-            //scss
-            {
-                text: "scss教程",
-
-                icon: "edit",
-                link: "scss",
-
-
-            },
 
             //js
             {
-                text: "html教程",
+                text: "js教程",
 
                 icon: "edit",
-                link: "html",
+                collapsable: true,
+                children: [
+                    {
+                        text: "javascript",
+                        link: "javascript"
+
+                    },
+                    {
+                        text: "typescript",
+                        link: "typescript"
+
+                    },
+
+                ]
 
 
             },
 
-            //ts
+            //vue
             {
-                text: "html教程",
+                text: "vue教程",
 
                 icon: "edit",
-                link: "html",
+                collapsable: true,
+                children: [
+                    {
+                        text: "vue2教程",
+                        link: "vue2"
+
+                    },
+                    {
+                        text: "vue3教程",
+                        link: "vue3"
+
+                    },
+
+                    {
+                        text: "uniapp教程",
 
 
-            },
+                        link: "uniapp",
 
 
-            //  vue2笔记
-            {
-                text: "vue2教程",
+                    },
 
-                icon: "edit",
-                link: "vue2教程",
-
-
-            },
-
-            //  vue3笔记
-            {
-                text: "vue3教程",
-                icon: "edit",
-
-                link: "vue3教程",
-
-
-            },
-
-            //  uniapp笔记
-            {
-                text: "uniapp教程",
-
-                icon: "edit",
-                link: "uniapp",
+                ]
 
 
             },
@@ -244,29 +256,22 @@ export default hopeTheme({
         "/document/linux运维": [
 
             {
-                text: "vue3教程",
+                text: "git教程",
                 icon: "edit",
 
-                link: "vue3教程",
+                link: "git",
 
 
             },
             {
-                text: "vue2教程",
+                text: "docker教程",
 
                 icon: "edit",
-                link: "vue2教程",
+                link: "docker",
 
 
             },
-            {
-                text: "uniapp教程",
 
-                icon: "edit",
-                link: "uniapp",
-
-
-            },
         ],
 
         //高数英语笔记
