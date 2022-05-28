@@ -369,6 +369,10 @@ export default hopeTheme({
                         text: "rocketmq",
                         link: "rocketmq"
                     },
+                    {
+                        text: "dubbo",
+                        link: "dubbo"
+                    },
 
                 ]
             },
