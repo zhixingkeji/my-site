@@ -264,29 +264,113 @@ export default hopeTheme({
         //java后端笔记
         "/document/java后端": [
 
+
             {
-                text: "vue3教程",
+                text: "java教程",
                 icon: "edit",
+                collapsable: true,
+                children: [
+                    {
+                        text: "java基础",
+                        link: "java"
+                    },
+                    {
+                        text: "安卓",
+                        link: "android"
+                    },
+                    {
+                        text: "maven",
+                        link: "maven"
+                    },
+                    {
+                        text: "tomcat",
+                        link: "tomcat"
+                    },
+                    {
+                        text: "servlet",
+                        link: "servlet"
+                    },
+                    {
+                        text: "数据结构",
+                        link: "数据结构"
+                    },
 
-                link: "vue3教程",
+                    {
+                        text: "算法",
+                        link: "算法"
+                    },
+
+                    {
+                        text: "设计模式",
+                        link: "设计模式"
+                    },
 
 
+                ]
             },
+
+
             {
-                text: "vue2教程",
-
+                text: "spring教程",
                 icon: "edit",
-                link: "vue2教程",
+                collapsable: true,
+                children: [
+                    {
+                        text: "spring",
+                        link: "spring"
+                    },
+                    {
+                        text: "springboot",
+                        link: "springboot"
+                    },
+                    {
+                        text: "springmvc",
+                        link: "springmvc"
+                    },
+                    {
+                        text: "mybatis",
+                        link: "mybatis"
+                    },
+                    {
+                        text: "mybatisplus",
+                        link: "mybatisplus"
+                    },
+                    {
+                        text: "jwt",
+                        link: "jwt"
+                    },
+                    {
+                        text: "shiro",
+                        link: "shiro"
+                    },
+                    {
+                        text: "security",
+                        link: "springsecurity"
+                    },
+                    {
+                        text: "restful-api",
+                        link: "restful"
+                    },
 
-
+                ]
             },
+
+
             {
-                text: "uniapp教程",
-
+                text: "springcloud教程",
                 icon: "edit",
-                link: "uniapp",
+                collapsable: true,
+                children: [
+                    {
+                        text: "springcould",
+                        link: "springcould"
+                    },
+                    {
+                        text: "rocketmq",
+                        link: "rocketmq"
+                    },
 
-
+                ]
             },
         ],
 
@@ -294,30 +378,129 @@ export default hopeTheme({
         //python全栈笔记
         "/document/python全栈": [
 
+            //python
             {
-                text: "vue3教程",
+                text: "python教程",
                 icon: "edit",
-
-                link: "vue3教程",
+                collapsable: true,
+                children: [
+                    {
+                        text: "python教程",
+                        link: "python",
+                    },
+                    {
+                        text: "pyautogui教程",
+                        link: "pyautogui",
+                    },
+                    {
+                        text: "软件测试",
+                        link: "软件测试",
+                    }
+                ]
 
 
             },
-            {
-                text: "vue2教程",
 
+
+            //爬虫
+            {
+                text: "爬虫教程",
                 icon: "edit",
-                link: "vue2教程",
+                collapsable: true,
+                children: [
+                    {
+                        text: "selenium教程",
+                        link: "selenium",
+                    },
+                    {
+                        text: "scrapy教程",
+                        link: "scrapy",
+                    },
+                ]
 
 
             },
+
+
+            //后端
             {
-                text: "uniapp教程",
+                text: "后端",
+                collapsable: true,
 
                 icon: "edit",
-                link: "uniapp",
-
+                children: [
+                    {
+                        text: "flask教程",
+                        link: "flask",
+                    },
+                    {
+                        text: "django教程",
+                        link: "django",
+                    }
+                ]
 
             },
+
+
+            //大数据
+            {
+                text: "大数据",
+
+                icon: "edit",
+                collapsable: true,
+                children: [
+                    {
+                        text: "hadoop教程",
+                        link: "flask",
+                    },
+                    {
+                        text: "spark教程",
+                        link: "django",
+                    },
+                    {
+                        text: "flink教程",
+                        link: "flink",
+                    }
+                ]
+
+            },
+
+            //深度学习
+            {
+                text: "深度学习",
+
+                icon: "edit",
+                collapsable: true,
+                children: [
+                    {
+                        text: "pytorch教程",
+                        link: "pytorch",
+                    },
+                    {
+                        text: "机器学习教程",
+                        link: "机器学习",
+                    },
+                    {
+                        text: "深度学习环境搭建",
+                        link: "深度学习环境搭建",
+                    },
+                    {
+                        text: "pandas教程",
+                        link: "pandas",
+                    },
+                    {
+                        text: "opencv",
+                        link: "opencv",
+                    },
+                    {
+                        text: "yolov5",
+                        link: "yolov5",
+                    }
+
+                ]
+
+            },
+
         ],
 
 
