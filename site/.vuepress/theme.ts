@@ -54,6 +54,47 @@ export default hopeTheme({
 
             },
 
+            //css
+            {
+                text: "css教程",
+
+                icon: "edit",
+                link: "css",
+
+
+            },
+
+            //scss
+            {
+                text: "scss教程",
+
+                icon: "edit",
+                link: "scss",
+
+
+            },
+
+            //js
+            {
+                text: "html教程",
+
+                icon: "edit",
+                link: "html",
+
+
+            },
+
+            //ts
+            {
+                text: "html教程",
+
+                icon: "edit",
+                link: "html",
+
+
+            },
+
+
             //  vue2笔记
             {
                 text: "vue2教程",
