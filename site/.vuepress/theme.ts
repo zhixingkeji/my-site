@@ -89,14 +89,32 @@ export default hopeTheme({
                 icon: "edit",
                 collapsable: true,
                 children: [
+
+                    //js
                     {
                         text: "javascript",
                         link: "javascript"
 
                     },
+
+                    //es
+                    {
+                        text: "ES语法规范",
+                        link: "es"
+
+                    },
+
+                    //ts
                     {
                         text: "typescript",
                         link: "typescript"
+
+                    },
+
+                    //node
+                    {
+                        text: "node",
+                        link: "node"
 
                     },
 
@@ -113,23 +131,28 @@ export default hopeTheme({
                 collapsable: true,
                 children: [
                     {
-                        text: "vue2教程",
+                        text: "vue2",
                         link: "vue2"
 
                     },
                     {
-                        text: "vue3教程",
+                        text: "vue3",
                         link: "vue3"
-
                     },
 
                     {
-                        text: "uniapp教程",
-
-
+                        text: "uniapp",
                         link: "uniapp",
+                    },
 
+                    {
+                        text: "vuepress",
+                        link: "vuepress",
+                    },
 
+                    {
+                        text: "webpack",
+                        link: "webpack",
                     },
 
                 ]
@@ -168,6 +191,33 @@ export default hopeTheme({
                 icon: "edit",
 
                 link: "php",
+
+            },
+
+            //  md教程
+            {
+                text: "md教程",
+                icon: "edit",
+
+                link: "markdown",
+
+            },
+
+            //  计算机二级公共基础
+            {
+                text: "计算机二级公共基础",
+                icon: "edit",
+
+                link: "计算机二级公共基础",
+
+            },
+
+            //  网络基础
+            {
+                text: "网络基础",
+                icon: "edit",
+
+                link: "网络基础",
 
             },
 
