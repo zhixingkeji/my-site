@@ -97,17 +97,19 @@ export default hopeTheme({
 
                     },
 
-                    //es
-                    {
-                        text: "ES语法规范",
-                        link: "es"
 
-                    },
 
                     //ts
                     {
                         text: "typescript",
                         link: "typescript"
+
+                    },
+
+                    //es
+                    {
+                        text: "ES语法规范",
+                        link: "es"
 
                     },
 
@@ -334,6 +336,10 @@ export default hopeTheme({
                     {
                         text: "mybatisplus",
                         link: "mybatisplus"
+                    },
+                    {
+                        text: "freemarker",
+                        link: "freemarker"
                     },
                     {
                         text: "jwt",
