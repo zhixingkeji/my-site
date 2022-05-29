@@ -337,10 +337,7 @@ export default hopeTheme({
                         text: "mybatisplus",
                         link: "mybatisplus"
                     },
-                    {
-                        text: "freemarker",
-                        link: "freemarker"
-                    },
+                
                     {
                         text: "jwt",
                         link: "jwt"

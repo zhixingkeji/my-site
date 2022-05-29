@@ -692,3 +692,156 @@ http://localhost:8080/swagger-ui/index.html
 
 
 
+
+
+
+
+## 第9章 freemarker视图模板
+
+### 9.1 概述
+
+Freemarker是一款模板引擎，是一种基于模版生成静态文件的通用工具，它是使用纯java编写的，一般用来生成HTML页面。
+
+
+
+注释
+
+```ftl
+<#-- freemarker中的注释  -->
+```
+
+
+
+### 9.2 数据类型
+
+布尔
+
+日期
+
+数值
+
+字符串
+
+sequence
+
+hash
+
+
+
+### 9.3 常见指令
+
+assign 自定义变量指令
+
+```jsp
+<#assign name> 
+  capture this 
+</#assign> 
+```
+
+
+
+if 逻辑判断指令  
+
+```jsp
+<#assign age=23>
+<#if (age>60)>老年人
+<#elseif (age>40)>中年人
+<#elseif (age>20)>青年人
+<#else> 少年人
+</#if>
+```
+
+
+
+list 遍历指令
+
+```jsp
+<#list nameList as names>    
+  ${names}   
+</#list>
+```
+
+
+
+switch 开关
+
+```jsp
+<#switch x>  
+  <#case 1>  
+         1  
+      <#break>  
+  <#case 2>  
+         2  
+      <#break>  
+  <#default>  
+         d  
+      <#break>  
+</#switch>
+```
+
+
+
+marco 自定义指令
+
+```jsp
+<#macro test foo bar="Bar" baaz=-1>
+测试和参数：${foo}, ${bar}, ${baaz}
+</#宏>
+<@test foo="a" bar="b" baaz=5*5-2/>
+<@test foo="a" bar="b"/>
+<@test foo="a" baaz=5*5-2/>
+<@test foo="a"/>
+```
+
+
+
+import 导入指令
+
+```jsp
+<#import "lib/my_test.ftl" as com>
+```
+
+
+
+include 包含指令
+
+```jsp
+<#include "/inc/top.ftl"/>  
+```
+
+
+
+
+
+### 9.4 页面静态化
+
+**概念**
+
+对于数据长期不需要改变的动态页面静态化，让用户访问该页面时不用请求数据库，而是直接请求该静态html即可，减轻对数据库的压力
+
+
+
+**定义模板**
+
+
+
+**加载模板**
+
+
+
+**生成对应的html文件**
+
+
+
+
+
+### 9.5 运算符
+
+**算数**
+
+**逻辑**
+
+**比较**
+
+**空值**
+
