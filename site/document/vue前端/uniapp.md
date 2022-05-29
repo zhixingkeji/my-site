@@ -2,20 +2,24 @@
 title: uniapp教程
 
 date: 2022-03-24 00:43:01
-
-
 ---
 
 
 
 
-## 一. 简介
+## 第一章 简介
 
 ### 1.1 初体验
 
+**用 HbuildX 创建项目**
+
+![image-20220529195009605](asset/image-20220529195009605.png)
 
 
-**命令行创建项目**
+
+
+
+**用命令行创建项目**
 
 ```sh
 vue create -p dcloudio/uni-preset-vue uniapp-study
@@ -39,7 +43,7 @@ npm run dev:mp-weixin
 
 ### 1.2 项目结构
 
-App.vu  应用配置
+App.vue  应用配置
 
 main.js   vue入口文件
 
