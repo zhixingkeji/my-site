@@ -206,11 +206,11 @@ function test(){
 
 
     例如 :  
-
+    
     HTML 网页完成加载  
-
+    
     HTML 输入字段被修改  
-
+    
     HTML 按钮被点击  
 
 ```html
@@ -1355,7 +1355,67 @@ jQuery 库包含以下功能：
 
 
 
+**jQuery 安装**
+
+```sh
+cnpm install jquery 
+```
+
+
+
+**jQuery 引入**
+
+```html
+# 普通项目
+ <script src="node_modules/jquery/dist/jquery.js"></script>
+
+# vue项目
+```
+
+
+
+**`$` 符号的由来**
+
+jQuery.js 就是一个自执行函数
+
+给 `window` 添加了两个变量
+
+```js
+window.jQuery = window.$ = jQuery 
+```
+
+
+
+**jquery 对象**
+
+jquery对象 就是用 jquery选择器获取到的对象
+
+JS的dom对象不能调用jquery对象的方法，同理 jquery对象也不能调用 dom对象的方法
+
+ jquery对象是一个伪数组，jquery对象就是dom对象的一个包装集
+
+
+
+**jquery 对象和 dom对象的转化**
+
+```js
+//dom 2 jquery
+var div1 = ducument.getElementById("one")
+var $div1 = $(div1)
+
+// jquery 2 dom
+var $divs = $('div')
+var div1 = $divs[0] 
+var div1 = $divs.get(1)  
+```
+
+
+
+
+
 ### 9.2 Jquery事件
+
+**js所有事件**
 
 | 鼠标事件                                                     | 键盘事件                                                     | 表单事件                                                  | 文档/窗口事件                                             |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :-------------------------------------------------------- | :-------------------------------------------------------- |
@@ -1367,19 +1427,120 @@ jQuery 库包含以下功能：
 
 
 
-```js
-$("p").click(function(){
-    // 动作触发后执行的代码!!
-});
+**注册事件**
+
+on注册简单事件
+
+```javascript
+    // 表示给$(selector)绑定事件，并且由自己触发，不支持动态绑定。
+    $(selector).on( "click", function() {});
 ```
+
+
+
+on注册委托事件
+
+```javascript
+    // 表示给$(selector)绑定代理事件，当必须是它的内部元素span才能触发这个事件，支持动态绑定
+    $(selector).on( "click",'span', function() {});
+```
+
+
+
+on注册事件的语法：
+
+```javascript
+    // 第一个参数：events，绑定事件的名称可以是由空格分隔的多个事件（标准事件或者自定义事件）
+    // 第二个参数：selector, 执行事件的后代元素（可选），如果没有后代元素，那么事件将有自己执行。
+    // 第三个参数：data，传递给处理函数的数据，事件触发的时候通过event.data来使用（不常使用）
+    // 第四个参数：handler，事件处理函数
+    $(selector).on(events,[selector],[data],handler);
+```
+
+
+
+**事件解绑**
+
+```javascript
+    // 解绑匹配元素的所有事件
+    $(selector).off();
+    // 解绑匹配元素的所有click事件
+    $(selector).off("click");
+```
+
+
+
+**触发事件**
+
+```javascript
+    $(selector).click(); //触发 click事件
+    $(selector).trigger("click");
+```
+
+
+
+
 
 
 
 ### 9.3 jquery 选择器
 
-html相关操作
+jquery 基本选择器
+
+| 名称       | 用法          | 描述                          |
+| ---------- | ------------- | ----------------------------- |
+| ID选择器   | $("#id")      | 获取指定ID的元素              |
+| 类选择器   | $(".class")   | 获取同一类class的元素         |
+| 标签选择器 | $("div")      | 获取同一类标签的所有元素      |
+| 并集选择器 | $("div,p,li") | 使用逗号分隔,符合条件之一即可 |
+| 交集选择器 | $("div.red")  | 获取class为red的div元素       |
+
+
+
+层级选择器
+
+| 名称       | 用法        | 描述                                                        |
+| ---------- | ----------- | :---------------------------------------------------------- |
+| 子代选择器 | $(“ul>li”); | 使用>号，获取儿子层级的元素，注意，并不会获取孙子层级的元素 |
+| 后代选择器 | $(“ul li”); | 使用空格，代表后代选择器，获取ul下的所有li元素，包括孙子等  |
+
+
+
+过滤选择器
+
+| 名称         | 用法                               | 描述                                                        |
+| ------------ | ---------------------------------- | :---------------------------------------------------------- |
+| :eq（index） | $(“li:eq(2)”).css(“color”, ”red”); | 获取到的li元素中，选择索引号为2的元素，索引号index从0开始。 |
+| :odd         | $(“li:odd”).css(“color”, ”red”);   | 获取到的li元素中，选择索引号为奇数的元素                    |
+| :even        | $(“li:even”).css(“color”, ”red”);  | 获取到的li元素中，选择索引号为偶数的元素                    |
+
+
+
+筛选选择器(方法)
+
+| 名称               | 用法                        | 描述                             |
+| ------------------ | --------------------------- | -------------------------------- |
+| children(selector) | $(“ul”).children(“li”)      | 相当于$(“ul>li”)，子类选择器     |
+| find(selector)     | $(“ul”).find(“li”);         | 相当于$(“ul li”),后代选择器      |
+| siblings(selector) | $(“#first”).siblings(“li”); | 查找兄弟节点，不包括自己本身。   |
+| parent()           | $(“#first”).parent();       | 查找父亲                         |
+| eq(index)          | $(“li”).eq(2);              | 相当于$(“li:eq(2)”),index从0开始 |
+| next()             | $(“li”).next()              | 找下一个兄弟                     |
+| prev()             | $(“li”).prev()              | 找上一次兄弟                     |
+
+
+
+
+
+html 相关操作
 
 ```js
+//获取被选元素的文本
+var str = $("p").text()
+
+//覆盖被选元素的文本
+$("p").text("设置文本")
+
 //在被选元素的结尾插入内容（仍然在该元素的内部）
 $("p").append("追加文本");
 
@@ -1425,7 +1586,42 @@ $("p").css("background-color");
 
 //设置 style 属性
 $("p").css({"background-color":"yellow","font-size":"200%"});
+
+//设置宽高
+$("#div1").height(100).width("200px")
 ```
+
+
+
+属性设置
+
+```javascript
+    /*1.获取属性*/
+    $('li').attr('name');
+    /*2.设置属性*/
+    $('li').attr('name','tom');
+    /*3.设置多个属性*/
+    $('li').attr({
+        'name':'tom',
+        'age':'18'
+    });
+    /*4.删除属性*/
+    $('li').removeAttr('name');
+```
+
+
+
+prop方法
+
+```javascript
+    /*对于布尔类型的属性，不要attr方法，应该用prop方法 prop用法跟attr方法一样。*/
+    $("#checkbox").prop("checked");
+    $("#checkbox").prop("checked", true);
+    $("#checkbox").prop("checked", false);
+    $("#checkbox").removeProp("checked");
+```
+
+
 
 
 
@@ -1458,9 +1654,169 @@ $("button").click(function(){
 
 
 
-### 9.5 jquery插件
+### 9.5 动画
 
-操作 cookie
+基本动画
+
+```javascript
+    /*注意：动画的本质是改变容器的大小和透明度*/
+    /*注意：如果不传参数是看不到动画*/
+    /*注意：可传入特殊的字符  fast normal slow*/
+    /*注意：可传入数字 单位毫秒*/
+    /*1.展示动画*/
+    $('li').show();
+    /*2.隐藏动画*/
+    $('li').hide();
+    /*3.切换展示和隐藏*/
+    $('li').toggle();
+```
+
+
+
+滑入滑出
+
+```javascript
+    /*注意：动画的本质是改变容器的高度*/
+    /*1.滑入动画*/
+    $('li').slideDown();
+    /*2.滑出动画*/
+    $('li').slideUp();
+    /*3.切换滑入滑出*/
+    $('li').slideToggle();
+```
+
+
+
+淡入淡出
+
+```javascript
+    /*注意：动画的本质是改变容器的透明度*/
+    /*1.淡入动画*/
+    $('li').fadeIn();
+    /*2.淡出动画*/
+    $('li').fadeOut();
+    /*3.切换淡入淡出*/
+    $('li').fadeToggle();
+    $('li').fadeTo('speed','opacity');
+```
+
+
+
+自定义动画
+
+```javascript
+    /*
+    * 自定义动画
+    * 参数1：需要做动画的属性
+    * 参数2：需要执行动画的总时长
+    * 参数3：执行动画的时候的速度
+    * 参数4：执行动画完成之后的回调函数
+    * */
+    $('#box1').animate({left:800},5000);
+    $('#box2').animate({left:800},5000,'linear');
+    $('#box3').animate({left:800},5000,'swing',function () {
+        console.log('动画执行完成');
+    });
+```
+
+
+
+动画队列  
+
+```javascript
+    /*
+    jQuery中有个动画队列的机制。
+    当我们对一个对象添加多次动画效果时后添加的动作就会被放入这个动画队列中，  
+    等前面的动画完成后再开始执行。
+    可是用户的操作往往都比动画快，  
+    如果用户对一个对象频繁操作时不处理动画队列就会造成队列堆积，
+    影响到效果。
+    */
+```
+
+
+
+stop使用
+
+```javascript
+    /*1.停止当前动画  如果动画队列当中还有动画立即执行*/
+    //$('div').stop();
+    /*2.和stop()效果一致  说明这是默认设置*/
+    //$('div').stop(false,false);
+    /*3.停止当前动画  清除动画队列*/
+    //$('div').stop(true,false);
+    /*4.停止当前动画并且到结束位置  清除了动画队列*/
+    //$('div').stop(true,true);
+    /*5.停止当前动画并且到结束位置  如果动画队列当中还有动画立即执行*/
+    $('div').stop(false,true);
+```
+
+
+
+### 9.6 节点操作
+
+创建节点
+
+```javascript
+    /*创建节点*/
+    var $a = $('<a href="http://www.baidu.com" target="_blank">百度1</a>');
+```
+
+
+
+克隆节点
+
+```javascript
+    /*如果想克隆事件  false  true克隆事件*/
+    var $cloneP = $('p').clone(true);
+```
+
+
+
+添加&移动节点
+
+```javascript
+    /*追加自身的最后面  传对象和html格式代码*/
+    $('#box').append('<a href="http://www.baidu.com" target="_blank"><b>百度3</b></a>');
+    $('#box').append($('a'));
+    /*追加到目标元素最后面  传目标元素的选择器或者对象*/
+    $('<a href="http://www.baidu.com" target="_blank"><b>百度3</b></a>').appendTo($('#box'));
+    $('a').appendTo('#box');
+    
+    prepend();
+    prependTo();
+    after();
+    before();
+```
+
+
+
+删除节点&清空节点
+
+```javascript
+    /*1.清空box里面的元素*/
+    /* 清理门户 */
+    $('#box').empty();
+    /*2.删除某个元素*/
+    /* 自杀 */
+    $('#box').remove();
+```
+
+
+
+### 9.7 高级特性
+
+链式编程
+
+隐式迭代
+
+多库共存
+
+
+
+### 9.8 jquery插件
+
+操作cookie 插件
 
 
 
@@ -1494,3 +1850,16 @@ $.removeCookie('name', { path: '/' });
 
 
 
+
+
+懒加载插件
+
+jquery.lazyload.js 
+
+
+
+
+
+ui 插件
+
+jquery.ui.js插件
