@@ -488,11 +488,15 @@ setup(){
 
 
 
-### 3.4 插槽
+### 3.4 父子双向绑定
 
 
 
-### 3.4 加强组件传值
+
+
+
+
+### 3.5 加强组件传值
 
 provide不限层级，只要是处于A页面下的子组件 或者孙子组件都可以。
 
@@ -510,7 +514,7 @@ const foo = inject(key) // foo 的类型: string | undefined
 
 
 
-### 3.5
+
 
 
 
@@ -522,7 +526,12 @@ const foo = inject(key) // foo 的类型: string | undefined
 
 ### 3.7 css样式隔离
 
-sooped
+```vue
+<style sooped lang="scss">
+</style>
+```
+
+
 
 
 
@@ -560,11 +569,17 @@ keep-alive exclude="About"  //排除about组件的保留记录
 
 
 
-## 第4章 组件库
+### 3.9 组件插槽
+
+
+
+
+
+
+
+## 第4章 第三方库
 
 ### 4.1 elementUI组件库
-
-#### 4.1.1 安装element组件库和icon库
 
 安装element-plus
 
@@ -605,89 +620,15 @@ export default (app) => {
 
 
 
-#### 4.1.2 对话框显示方案
 
-父子组件,父组件按钮打开一个对话框,对话框是他的子组件,
 
-实现是否显示对话框的双向绑定.
+### 4.2 表单验证模块
 
 
 
-子组件 UserAdd
-
-```js
-//html
-<el-dialog
-    title="新增用户"
-    :model-value="adduserbtn"
-    @close="onClose"
-    @open="onOpen"
->
-
-//script
-props: {
-  adduserbtn: {
-    type: Boolean,
-    default: false,
-    required: true
-  }
-},
-
-setup(props, context) {
-    let adduserbtn = ref(props.adduserbtn)
-    watch(() => props.adduserbtn, (val) => {
-      //查看父组件传过来的值是否变化，从而修改值
-      adduserbtn.value = val
-    });
-    watch(() => adduserbtn.value, (val) => {
-      //查看子组件值是否变化，在赋值给父组件
-      context.emit('update:adduserbtn', val)
-    });
-    
-    
-    //取消按钮
-    let close = () => {
-      adduserbtn.value = false
-    }
-
-    //弹窗关闭按钮
-    let onClose = () => {
-      close()
-    }
-
-    //提交按钮
-    let handelConfirm = () => {
-      close()
-    }
-}
-```
-
-父组件
-
-```html
-//html
-<UserAdd v-model:adduserbtn="adduserbtn"></UserAdd>
-//script
-let adduserbtn = ref(false)
-```
 
 
-
-### 4.2 前端权限方案
-
-1. 后端根据账号的等级,返回不同的菜单列表,前端做动态路由进行展示(路由拦截,缓存菜单)
-
-2. 后端返回账号信息和角色信息,前端从公共类中展示所有菜单,根据角色不同,把某些菜单设置为禁用
-
-
-
-### 4.3 网络请求axios
-
-axios安装
-
-`cnpm i axios --save`
-
-
+### 4.3 deepcopy 深拷贝
 
 
 
@@ -724,10 +665,6 @@ resolve: {
 
 
 ### 4.5 使用网页md编辑器组件
-
-
-
-
 
 #### 4.5.1 vue3下安装
 
@@ -769,6 +706,28 @@ npm install markdown-it --save
 npm install github-markdown-css
 
 
+
+
+
+### 4.6 mitt 
+
+```sh
+cnpm install mitt
+```
+
+
+
+
+
+### 4.7 path
+
+
+
+
+
+
+
+
 ## 第5章 axios
 
 ### 5.1 概念
@@ -786,11 +745,15 @@ Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js �
 -   自动转换 JSON 数据
 -   客户端支持防御 XSRF
 
+
+
 ### 5.3 安装
 
 ```shell
 cnpm install axios
 ```
+
+
 
 ### 5.4 发送请求
 
@@ -888,4 +851,128 @@ sessionstore  会话存储空间 区别
 store.commit('SET_TOKEN',jwt)
 ```
 
+
+
+
+
+
+
+
+
+## 第8章 解决方案
+
+### 8.1 对话框显示方案
+
+父子组件,父组件按钮打开一个对话框,对话框是他的子组件,
+
+实现是否显示对话框的双向绑定.
+
+
+
+**子组件 UserAdd**
+
+```js
+//html
+<el-dialog
+    title="新增用户"
+    :model-value="adduserbtn"
+    @close="onClose"    //点右上角的叉子
+    @open="onOpen"      //打开时
+>
+    <span>你好</span>    
+	<template #footer>
+    	<span class="dialog-footer">
+            <el-button 
+				type="primary" 
+				@click="onCancel"
+       		 >取消</el-button>
+        	<el-button 
+				type="primary" 
+				@click="handelConfirm"
+       		 >确定</el-button>
+      	</span>
+	</template>
+</el-dialog>        
+
+//script
+props: {
+  adduserbtn: {
+    type: Boolean,
+    default: false,
+    required: true
+  }
+},
+
+setup(props, context) {
+    let adduserbtn = ref(props.adduserbtn)
+    watch(() => props.adduserbtn, (val) => {
+      //查看父组件传过来的值是否变化，从而修改值
+      adduserbtn.value = val
+    });
+    watch(() => adduserbtn.value, (val) => {
+      //查看子组件值是否变化，在赋值给父组件
+      context.emit('update:adduserbtn', val)
+    });
+    
+    //关闭操作
+    let close = ()=>{
+        adduserbtn.value = false
+    }
+    
+    
+    //窗口打开
+    let onOpen = () => {
+    	...
+    }
+
+    //窗口关闭
+    let onClose = () => {
+      	close()
+      	...
+    }
+
+    //提交按钮
+    let handelConfirm = () => {
+      	close()
+        ...
+    }
+    
+     //取消按钮
+    let onCancel = () => {
+     	close()
+        ...
+    }
+}
+    
+
+//style
+给对话框之外添加遮罩层 并且无法点击
+设置滚轮不能滚动
+    
+```
+
+
+
+**父组件**
+
+```html
+//html
+<UserAdd v-model:adduserbtn="adduserbtn"></UserAdd>
+//script
+let adduserbtn = ref(false)
+```
+
+
+
+
+
+### 8.2 复制内容到剪贴板
+
+```js
+text = "123" 
+
+if(navigator.clipboard) {
+	navigator.clipboard.writeText(text);
+}
+```
 

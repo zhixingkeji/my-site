@@ -6,19 +6,27 @@ date: 2021-11-14 10:20:59
 
 ---
 
+
+
 ## 第1章 ts 基础
 
-### 1. ts安装
+### 1.1 ts安装
 
 npm安装  
+
 `sudo npm install -g typescript`
 
+
+
 查看版本  
+
 `$ tsc -v`
+
+
 
 ## 第2章 语法
 
-### 1. 基础类型
+### 2.1 基础类型
 
 | 数据类型   | 关键字    |
 | ---------- | --------- |
@@ -31,6 +39,8 @@ npm安装
 | undefined  | undefined |
 | never      | never     |
 
+
+
 联合类型
 
 ```ts
@@ -41,13 +51,19 @@ val = "Runoob"
 console.log("字符串为 " + val)
 ```
 
-### 2. 变量声明
+
+
+### 2.2 变量声明
 
 `var uname:string = "Runoob";`
 
 类型推断  
+
 当类型没有给出时，TypeScript 编译器利用类型推断来推断类型。  
+
 如果由于缺乏声明而不能推断出类型，那么它的类型被视作默认的动态 any 类型。
+
+
 
 
 变量作用域
@@ -68,7 +84,9 @@ var obj = new Numbers();
 console.log("实例变量: "+obj.num_val)
 ```
 
-### 3. 函数
+
+
+### 2.3 函数
 
 函数返回值限定
 
@@ -80,6 +98,8 @@ function greet():string { // 返回字符串
 caller()
 ```
 
+
+
 函数参数 类型限定
 
 ```ts
@@ -89,6 +109,8 @@ return a*b;
 console.log(res(12,2))
 ```
 
+
+
 匿名函数自调用
 
 ```ts
@@ -97,6 +119,8 @@ console.log(res(12,2))
     console.log(x)     
  })()
 ```
+
+
 
 递归函数
 
@@ -111,12 +135,16 @@ function factorial(number) {
 console.log(factorial(6));      // 输出 720
 ```
 
+
+
 箭头函数
 
 ```ts
-var foo = (x:number)=>10 + x
+var foo = (x:number) => {10 + x}
 console.log(foo(100))      //输出结果为 110
 ```
+
+
 
 函数重载
 
@@ -132,18 +160,25 @@ disp("abc")
 disp(1,"xyz");
 ```
 
-### 4. 数组
+
+
+### 2.4 数组
 
 ```ts
 var sites:string[]; 
 sites = ["Google","Runoob","Taobao"]
+
+var sites:number[]; 
+sites = [10,20,30]
 ```
+
+
 
 
 
 ## 第3章 面向对象
 
-### 1. 接口
+### 3.1 接口
 
 ```ts
 interface Person { 
@@ -161,7 +196,9 @@ console.log("年龄:  "+drummer.age)
 console.log("喜欢的乐器:  "+drummer.instrument)
 ```
 
-### 2. 类
+
+
+### 3.2 类
 
 ```ts
 class Car {
@@ -180,7 +217,9 @@ class Car {
 }
 ```
 
-### 3. 对象
+
+
+### 3.3 对象
 
 ```ts
 var sites = { 
@@ -192,7 +231,9 @@ console.log(sites.site1)
 console.log(sites.site2)
 ```
 
-### 4. 命名空间
+
+
+### 3.4 命名空间
 
 ```ts
 namespace SomeNameSpaceName { 
@@ -201,7 +242,9 @@ namespace SomeNameSpaceName {
 }
 ```
 
-### 5. 模块
+
+
+### 3.5 模块
 
 IShape.ts 文件代码：
 
@@ -210,6 +253,8 @@ export interface IShape {
    draw(); 
 }
 ```
+
+
 
 Circle.ts 文件代码：
 
@@ -222,6 +267,8 @@ export class Circle implements shape.IShape {
 }
 ```
 
+
+
 Triangle.ts 文件代码：
 
 ```ts
@@ -232,6 +279,8 @@ export class Triangle implements shape.IShape {
    } 
 }
 ```
+
+
 
 TestShape.ts 文件代码：
 
@@ -248,7 +297,9 @@ drawAllShapes(new circle.Circle());
 drawAllShapes(new triangle.Triangle());
 ```
 
-### 6.声明文件
+
+
+### 3.6 声明文件
 
 在开发过程中不可避免要引用其他第三方的 JavaScript 的库。
 虽然通过直接引用可以调用库的类和方法，但是却无法使用TypeScript 诸如类型检查等特性功能。

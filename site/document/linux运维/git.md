@@ -34,6 +34,10 @@ date: 2021-11-14 09:33:09
 
 ---
 
+
+
+
+
 ### 1.2 **错误排查**
 
 fatal: remote origin already exists.
@@ -65,6 +69,8 @@ git pull --rebase origin master
 ### 1.4 git 指令大全
 
 **查看历史**
+
+git show 查看上一次的提交
 
 git log # 查看当前分支的所有成员的提交记录
 

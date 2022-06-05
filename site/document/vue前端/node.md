@@ -309,13 +309,156 @@ fs.rmdir("/tmp/test",function(err){
 
 
 
-## 第4章 express服务器
+## 第4章 常用内置模块
+
+### 4.1 path
+
+`__dirname` 指向被执行 js 文件所在目录的绝对路径
+
+
+
+`__filename` 指向被执行 js 文件的绝对路径
+
+
+
+`path.join()`
+
+将多个参数值合并成一个路径
+
+```javascript
+const path = require('path')
+const fs = require('fs')
+path.join(__dirname, '/files/1.txt')
+```
+
+
+
+`path.basename()`
+
+-   获取路径中的文件名(无后缀)
+
+```javascript
+const path = require('path')
+const fpath = '/a/b/c/index.html'
+path.basename(fpath, '.html') //输出 index
+```
+
+
+
+`extname()`
+
+-   获取路径中文件的后缀名
+
+```javascript
+const path = require('path')
+const fpath  = '/a/b/c/index.html'
+path.extname(fpath) //输出 html
+```
+
+
+
+`sep`
+
+-   返回操作系统指定的路径分割符
+
+```javascript
+const path = require('path');
+console.log(path.sep);
+console.log(path.win32.sep);
+console.log(path.posix.sep);
+```
+
+
+
+`normalize()`
+
+-   将非标准的路径转换成标准路径，解析像 ‘.’ ，’…’，或多个杠。
+
+```javascript
+const path = require('path');
+console.log(path.normalize('./a/b/../../c'));
+console.log(path.normalize('./a//b//.././c'));
+```
+
+
+
+`resolve()`
+
+-   返回绝对路径
+
+```javascript
+const path = require('path');
+path.resolve(__dirname,'./demo');
+```
+
+
+
+`isAbsolute()`
+
+-   判断是否为绝对路径
+
+```javascript
+const path = require('path')
+path.isAbsolute('E:/a')
+```
+
+
+
+`parse()`
+
+-   解析一个路径，返回一个带有属性的对象
+
+```javascript
+const path = require('path');
+path.parse('./demo/test/a/1.txt');
+```
+
+
+
+`relative()`
+
+-   返回参数一到参数二的相对路径
+
+```javascript
+const path = require('path');
+path.relative('./demo/test', './demo/test/a/1.txt');
+```
+
+
+
+### 4.2 fs
+
+
+
+### 4.3 os
+
+
+
+### 4.4 http 
+
+
+
+### 4.5 url
+
+
+
+### 4.6 events
+
+
+
+### 4.7 QueryString
+
+
+
+### 4.8 stream
 
 
 
 
 
-## 第5章 常用库
+
+
+## 第5章 常用第三方库
 
 Danfo.js  结构化数据处理 类似pandas
 
@@ -324,3 +467,11 @@ electron  跨桌面端开发
 jimp 图片裁剪
 
 opencvjs 图像处理
+
+
+
+
+
+
+
+## 第6章 express服务器
