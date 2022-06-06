@@ -19,7 +19,7 @@ Spring Security是为基于Spring的应用程序提供声明式安全保护的�
 
 ### 1.2 全部过滤器
 
-![image-20220514113227577](D:\Project\MyProject\vuepress\docs\notes\java\Spring\asset\image-20220514113227577.png)
+![image-20220514113227577](./asset/image-20220514113227577.png)
 
 
 
@@ -55,11 +55,11 @@ FilterSecurityInterceptor  授权过滤器
 
 
 
-![image-20220514114523147](D:\Project\MyProject\vuepress\docs\notes\java\Spring\asset\image-20220514114523147.png)
+![image-20220514114523147](./asset/image-20220514114523147.png)
 
 
 
-![image-20220514115138765](D:\Project\MyProject\vuepress\docs\notes\java\Spring\asset\image-20220514115138765.png)
+![image-20220514115138765](./asset/image-20220514115138765.png)
 
 
 

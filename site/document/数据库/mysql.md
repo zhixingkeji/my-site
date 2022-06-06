@@ -47,7 +47,7 @@ set sql_model= "";  # 开启
 
 使用DECIMAL存储浮点型, 原理是以字符串形式表示浮点数
 
-![截图.png](./assets/mysql教程-1636895820262.png)
+![截图.png](./asset/mysql教程-1636895820262.png)
 
 
 
@@ -55,7 +55,7 @@ set sql_model= "";  # 开启
 
 一般存为时间戳 TIMESTAMP , 然后在程序内处理日期
 
-![1.png](./assets/mysql教程-1636895860535.png)
+![1.png](./asset/mysql教程-1636895860535.png)
 
 
 
@@ -69,7 +69,7 @@ EBUM 枚举
 
 SET 集合
 
-![2.png](./assets/mysql教程-1636895865516.png)
+![2.png](./asset/mysql教程-1636895865516.png)
 
 
 

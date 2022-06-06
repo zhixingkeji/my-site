@@ -331,7 +331,7 @@ scp -r root@192.168.60.133:/home/ixdba/etc.tar.gz /tmp
 
 #### 2.2.1 集群规划
 
-![image-20220328223916915](.\asset\img\image-20220328223916915.png)
+![image-20220328223916915](./asset/image-20220328223916915.png)
 
 
 
@@ -339,7 +339,7 @@ scp -r root@192.168.60.133:/home/ixdba/etc.tar.gz /tmp
 
 默认配置文件
 
-![image-20220328223756968](.\asset\img\image-20220328223756968.png)
+![image-20220328223756968](./asset/image-20220328223756968.png)
 
 
 

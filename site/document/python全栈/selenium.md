@@ -664,7 +664,7 @@ def test_one_fixture():
 
 超级鹰 http://www.chaojiying.com/
 
-![image-20220410164628386](asset/image-20220410164628386.png)
+![image-20220410164628386](./asset/image-20220410164628386.png)
 
 
 

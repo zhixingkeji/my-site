@@ -503,7 +503,7 @@ public class CustomFeignInterceptor implements RequestInterceptor{
 
 **在nacos网页内新增配置**
 
-![image-20220520080200118](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220520080200118.png)
+![image-20220520080200118](./asset/image-20220520080200118.png)
 
 
 
@@ -729,7 +729,7 @@ public class ConfigController {
 
 **Sentinel 对比 Hystrix**
 
-![image-20220520141418170](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220520141418170.png)
+![image-20220520141418170](./asset/image-20220520141418170.png)
 
 
 
@@ -832,7 +832,7 @@ QPS流控  每秒访问次数
 
 具体操作，点击查询订单资源的流控按钮，资源为查询订单（对谁流控资源就是谁），关联资源为生成订单（关联的资源压力大的时候，限制当前资源的访问）。
 
-![image-20220520174124326](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220520174124326.png)
+![image-20220520174124326](./asset/image-20220520174124326.png)
 
 
 
@@ -1004,7 +1004,7 @@ pull 拉模式
 
 push 推模式 结合 nacos配置中心
 
-![image-20220520190744103](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220520190744103.png)
+![image-20220520190744103](./asset/image-20220520190744103.png)
 
 只能从nacos中拉 , 在sentinel中修改配置后无法推送给nacos , 需要寻找其他方法
 
@@ -1032,7 +1032,7 @@ push 推模式 结合 nacos配置中心
 </dependency>
 ```
 
-![image-20220520191811337](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220520191811337.png)
+![image-20220520191811337](./asset/image-20220520191811337.png)
 
 
 
@@ -1084,7 +1084,7 @@ AT (seata)  TCC(MQ)   SAGA   XA
 
 两阶段 (2PC)   三阶段 (3PC)
 
-![image-20220520193653353](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220520193653353.png)
+![image-20220520193653353](./asset/image-20220520193653353.png)
 
 
 
@@ -1230,9 +1230,9 @@ seata / conf / file.conf
 
 采用网关的架构的优点
 
-![image-20220520202943046](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220520202943046.png)
+![image-20220520202943046](./asset/image-20220520202943046.png)
 
-![image-20220520203415736](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220520203415736.png)
+![image-20220520203415736](./asset/image-20220520203415736.png)
 
 
 
@@ -1339,7 +1339,7 @@ spring:
 
 全局滤过器
 
-![image-20220521184543666](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220521184543666.png)
+![image-20220521184543666](./asset/image-20220521184543666.png)
 
 
 
@@ -1428,7 +1428,7 @@ spring.could.sentinel.transport.dashboard: 127.0.0.1:8858
 
 **微服务架构的问题**
 
-![image-20220520204844583](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220520204844583.png)
+![image-20220520204844583](./asset/image-20220520204844583.png)
 
 
 
@@ -1440,7 +1440,7 @@ spring.could.sentinel.transport.dashboard: 127.0.0.1:8858
 
 **主要功能**
 
-![image-20220520205338301](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220520205338301.png)
+![image-20220520205338301](./asset/image-20220520205338301.png)
 
 
 
@@ -1468,7 +1468,7 @@ webapp / webapp.yml
 
 接受前端请求的端口 12800 
 
-![image-20220521192401839](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220521192401839.png)
+![image-20220521192401839](./asset/image-20220521192401839.png)
 
 
 

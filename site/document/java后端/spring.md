@@ -514,7 +514,7 @@ public class TxConfig {
 
 前两个使用最多，需要掌握
 
-![iShot2021-11-16 14.37.19.png](./assets/images/spring教程-1637044716589.png)
+![iShot2021-11-16 14.37.19.png](./asset/spring教程-1637044716589.png)
 
 
 
@@ -524,7 +524,7 @@ public class TxConfig {
 
 解决：注解中设置参数，mysql默认3级
 
-![ima123ge.png](./assets/images/spring教程-1637044783265.png)
+![ima123ge.png](./asset/spring教程-1637044783265.png)
 
 
 

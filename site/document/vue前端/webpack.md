@@ -705,7 +705,7 @@ rules: [
 
 目的是减少入口 js 的大小
 
-![image-20220605234516031](asset/image-20220605234516031.png)
+![image-20220605234516031](./asset/image-20220605234516031.png)
 
 
 
@@ -1125,7 +1125,7 @@ module.exports = {
        	 	},
             {
             	test: /\.jpg$/,
-            	type: 'asset'
+            	type: 'asset',
             	parser: {
             		dataUrlCondition: {
             			maxSize : 4 * 1024 * 1024 //4mb
@@ -1252,7 +1252,7 @@ module.exports = (env) => {
 
 ### 6.1 source-map
 
-![image-20220606101050902](asset/image-20220606101050902.png)
+![image-20220606101050902](./asset/image-20220606101050902.png)
 
 
 
@@ -1354,7 +1354,7 @@ npx webpack-dev-serve --open
 
 项目文件增加 if 判断
 
-![image-20220606133408814](asset/image-20220606133408814.png)
+![image-20220606133408814](./asset/image-20220606133408814.png)
 
 
 
@@ -1678,7 +1678,7 @@ plugins: [
 
 index.js
 
-![image-20220606203107399](asset/image-20220606203107399.png)
+![image-20220606203107399](./asset/image-20220606203107399.png)
 
 
 
@@ -1864,7 +1864,7 @@ externals: {
 
 配置 package.json
 
-![image-20220606212245202](asset/image-20220606212245202.png)
+![image-20220606212245202](./asset/image-20220606212245202.png)
 
 
 
@@ -1896,7 +1896,7 @@ npm i xxx -D  //你发布的包的名字
 
 ### 8.8 模块联邦
 
-![image-20220606213211449](asset/image-20220606213211449.png)
+![image-20220606213211449](./asset/image-20220606213211449.png)
 
 
 
@@ -1929,10 +1929,10 @@ npm i xxx -D  //你发布的包的名字
 4.   使用 devtools eval-cheap-module-source-map
 5.   区别开发和生产依赖
 6.   最小化 entry chunk
-7.   避免额外的优化 ![image-20220606214654174](asset/image-20220606214654174.png)
+7.   避免额外的优化 ![image-20220606214654174](./asset/image-20220606214654174.png)
 8.   输出结果不带路径信息
 9.   使用10版本以上node
-10.   ts-loader 配置![image-20220606214828548](asset/image-20220606214828548.png)
+10.   ts-loader 配置![image-20220606214828548](./asset/image-20220606214828548.png)
 
 
 

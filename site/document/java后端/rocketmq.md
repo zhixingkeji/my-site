@@ -712,7 +712,7 @@ rocketMQTemplate.syncSend("group",MessageBuilder.withPayload("延迟5秒发送")
 
 **事物概念**
 
-![image-20220522210410629](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220522210410629.png)
+![image-20220522210410629](./asset/image-20220522210410629.png)
 
 
 
@@ -996,7 +996,7 @@ message.putUserProperty("name","zhangsan");
 
 **集群工作流程**
 
-![image-20220522225952154](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220522225952154.png)
+![image-20220522225952154](./asset/image-20220522225952154.png)
 
 
 
@@ -1004,7 +1004,7 @@ message.putUserProperty("name","zhangsan");
 
 ### 5.2 多主多从同步搭建
 
-![image-20220522230415988](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220522230415988.png)
+![image-20220522230415988](./asset/image-20220522230415988.png)
 
 
 
@@ -1018,7 +1018,7 @@ RocketmQ 存到文件系统 速度快
 
 
 
-![image-20220522231640390](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220522231640390.png)
+![image-20220522231640390](./asset/image-20220522231640390.png)
 
 
 
@@ -1034,7 +1034,7 @@ RocketmQ 存到文件系统 速度快
 
 **物理地址**
 
-![image-20220522234219759](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220522234219759.png)
+![image-20220522234219759](./asset/image-20220522234219759.png)
 
 
 
@@ -1064,7 +1064,7 @@ ASYNC_FLUSH 异步刷盘
 
 **同步刷盘**
 
-![image-20220522234700141](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220522234700141.png)
+![image-20220522234700141](./asset/image-20220522234700141.png)
 
 
 
@@ -1072,19 +1072,19 @@ ASYNC_FLUSH 异步刷盘
 
 **异步刷盘**
 
-![image-20220522234814029](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220522234814029.png)
+![image-20220522234814029](./asset/image-20220522234814029.png)
 
 
 
 **高可用**
 
-![image-20220522235318750](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220522235318750.png)
+![image-20220522235318750](./asset/image-20220522235318750.png)
 
 
 
 **主从复制**
 
-![image-20220522235404540](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220522235404540.png)
+![image-20220522235404540](./asset/image-20220522235404540.png)
 
 
 
@@ -1098,13 +1098,13 @@ ASYNC_FLUSH 异步刷盘
 
 生产者负载均衡 轮训
 
-![image-20220523000545873](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220523000545873.png)
+![image-20220523000545873](./asset/image-20220523000545873.png)
 
 
 
 消费者负载均衡 循环平均分配
 
-![image-20220523000622635](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220523000622635.png)
+![image-20220523000622635](./asset/image-20220523000622635.png)
 
 
 
@@ -1122,7 +1122,7 @@ ASYNC_FLUSH 异步刷盘
 
 **有序消息重试**
 
-![image-20220523001121211](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220523001121211.png)
+![image-20220523001121211](./asset/image-20220523001121211.png)
 
 
 
@@ -1132,7 +1132,7 @@ ASYNC_FLUSH 异步刷盘
 
 除了有序消息其他都是无序消息
 
-![image-20220523001039739](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220523001039739.png)
+![image-20220523001039739](./asset/image-20220523001039739.png)
 
 
 
@@ -1140,13 +1140,13 @@ ASYNC_FLUSH 异步刷盘
 
 **死信队列**
 
-![image-20220523001615396](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220523001615396.png)
+![image-20220523001615396](./asset/image-20220523001615396.png)
 
 
 
-![image-20220523001538332](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220523001538332.png)
+![image-20220523001538332](./asset/image-20220523001538332.png)
 
-![image-20220523001558174](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220523001558174.png)
+![image-20220523001558174](./asset/image-20220523001558174.png)
 
 
 
@@ -1156,13 +1156,13 @@ ASYNC_FLUSH 异步刷盘
 
 ### 5.9 消息重复消费
 
-![image-20220523002346046](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220523002346046.png)
+![image-20220523002346046](./asset/image-20220523002346046.png)
 
 
 
 **消息幂等**
 
-![image-20220523002251358](D:\Project\MyProject\vuepress\docs\notes\java\SpringCould\asset\image-20220523002251358.png)
+![image-20220523002251358](./asset/image-20220523002251358.png)
 
 
 
