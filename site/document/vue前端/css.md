@@ -592,7 +592,7 @@ display：flex；
 
 ### 5.2 弹性容器的样式
 
-```
+```css
 //控制x轴
    justify-content：flex-start  //元素沿着主轴起点排列
    justify-content：flex-end  //元素沿着主轴终点排列
@@ -608,7 +608,7 @@ display：flex；
 
 
 
-```
+```css
 ul{
     display：flex;   //开启弹性容器
 
@@ -629,7 +629,7 @@ ul{
 
 ### 5.3 弹性元素的样式
 
-```
+```css
 li{
     //元素增长系数
     flex-grow:0;  //默认值为0，不占弹性容器里的空间
@@ -778,9 +778,9 @@ transform:translate(50px,100px)  //平移 x轴平移80px ,y轴平移 100px
 
 ```css
 .box1{
-left：50%；
-top：50%；
-transform：translateX(50px)   transform:translateY(50%)；
+	left：50%;
+	top：50%;
+	transform：translate(-50%,-50%);
 }
 ```
 
@@ -790,12 +790,12 @@ transform：translateX(50px)   transform:translateY(50%)；
 
 ```css
 .box4{
-transition：all 0.3s；
+	transition：all 0.3s；
 }
 
 .box4：hover{
-transform：translateY（-4px）；
-box-shadow：0 0 10px rgba（0,0,0,0.3）；
+	transform：translateY（-4px）；
+	box-shadow：0 0 10px rgba（0,0,0,0.3）；
 }
 ```
 
@@ -806,15 +806,17 @@ box-shadow：0 0 10px rgba（0,0,0,0.3）；
 ```css
 html { perspective：800px；}
 body { border：1px red solid；}
+
 .box1{
-width：200px；
-height：200px；
-background-color：#bfa；
-margin：200px  auto；
-transition：2s；
+	width：200px；
+	height：200px；
+	background-color：#bfa；
+	margin：200px  auto；
+	transition：2s；
 }
+
 .box1：hover {
-transform：translateZ（800px）；
+	transform：translateZ（800px）；
 }
 ```
 
@@ -1342,6 +1344,62 @@ right: 20px; //相对与其正常的位置向右偏移20px
 
 ## 第10章 响应式布局
 
+### 10.1 
+
+pc 端 1024px
+
+移动端
+
+ipad
+
+电视屏幕
+
+```html
+<head>
+	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0">
+</head>
+<style>
+    //超大电视
+    @media screen and (min-width: 2090px)(){
+        body{
+            background: pink;
+        }
+    }
+        
+      //移动端
+    @media screen and (max-width: 750px)(){
+        body{
+            background: blue;
+        }
+    }
+    
+       //平板端
+    @media screen and (min-width: 750) 
+        		  and (max-width: 960px){
+        body{
+            background: pink;
+        }
+    }
+    
+       //电脑端
+   	@media screen and (min-width: 960px) 
+        		  and (max-width: 1440px){
+        body{
+            background: pink;
+        }
+    }
+        
+</style>
+```
+
+
+
+淘宝无限适配+rem单位
+
+boosttrape 框架
+
+
+
 媒体查询
 
 当可视窗口为大于500，且小于700时候生效的样式
@@ -1353,6 +1411,20 @@ right: 20px; //相对与其正常的位置向右偏移20px
 	}
 }
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1575,13 +1647,31 @@ div{ color：red ！important }
 
 ## 第12章 常见需求解决方案
 
-12.1 单行省略解决方案
-
-12.2 高度塌陷解决方案
+### 12.1 单行省略解决方案
 
 
 
+### 12.2 高度塌陷解决方案
 
+float 塌陷
+
+```css
+.father:after{
+    content: "";  <!--content指你写的父元素-->
+    display: block; 
+    height: 0;
+    clear: both;
+    visibility: hidden;
+} 
+```
+
+
+
+
+
+margin 塌陷
+
+可以为父元素添加 overflow:hidden。
 
 
 
