@@ -182,16 +182,16 @@ export default hopeTheme({
         //编程基础笔记
         "/document/编程基础": [
 
-            //  c#教程
+            //  网络安全
             {
-                text: "c#教程",
+                text: "网络安全",
                 icon: "edit",
 
-                link: "csharp",
+                link: "网络安全",
 
             },
 
-            //  c#教程
+            //  php教程
             {
                 text: "php教程",
                 icon: "edit",

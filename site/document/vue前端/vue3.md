@@ -41,19 +41,33 @@ Vue 是一套用于构建用户界面的渐进式框架。与其它大型框架�
 
 ## 第2章 使用
 
-### 2.1 安装
+### 2.1 vue 安装
 
 ```bash
 $ npm install -g vue@next
 ```
 
-```bash
-npm install -g @vue/cli
-```
+
 
 
 
 ### 2.2 vue-cli脚手架
+
+安装
+
+```
+cnpm install -g @vue/cli
+```
+
+
+
+检查
+
+```
+vue --version
+```
+
+
 
 命令行创建项目
 
@@ -67,6 +81,62 @@ gui界面
 
 ```sh
 vue ui
+```
+
+
+
+安装插件
+
+```
+vue add element-plus
+```
+
+
+
+配置 vue.config.js
+
+```js
+module.exports = {
+    //部署生产环境和开发环境下的URL：可对当前环境进行区分
+    publicPath: process.env.NODE_ENV === 'production' ? '/public/' : './',
+     // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录 
+    assetsDir: "assets",
+    // 输出文件目录：在npm run build时，生成文件的目录名称
+    outputDir: 'dist',
+    // 代码保存时进行eslint检测
+    lintOnSave: false,
+	// 是否在构建生产包时生成 sourceMap 文件，false将提高构建速度 
+    productionSourceMap: false,  
+    // webpack-dev-server 相关配置
+	devServer: {
+    	// 自动打开浏览器
+        open: true,
+        // 主机
+        host: 'localhost',
+        // 端口
+        port: 9930,
+        // https
+        https: false,
+        // 热更新
+        hotOnly: true,
+
+    	proxy: 'http://localhost:4000'
+	},
+    
+    
+   	chainWebpack: config => {
+    	const svgRule = config.module.rule('svg')
+		// 清除已有的所有 loader。
+    	// 如果你不这样做，接下来的 loader 会附加在该规则现有的 loader 之后。
+    svgRule.uses.clear()
+
+    // 添加要替换的 loader
+    svgRule
+      .use('vue-svg-loader')
+      .loader('vue-svg-loader')
+  }
+    
+}
 ```
 
 
@@ -579,6 +649,10 @@ keep-alive exclude="About"  //排除about组件的保留记录
 
 ## 第4章 第三方库
 
+
+
+
+
 ### 4.1 elementUI组件库
 
 安装element-plus
@@ -592,7 +666,7 @@ vue add element-plus
 安装 element icon
 
 ```she
- cnpm install --save @element-plus/icons-vue 
+cnpm install --save @element-plus/icons-vue 
 ```
 
 
@@ -722,6 +796,114 @@ cnpm install mitt
 ### 4.7 path
 
 
+
+### 4.8 其他
+
+```json
+{
+  "name": "senyint-health",
+  "version": "1.0.0",
+  "description": "senyint-health",
+  "author": "",
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "preview": "node build/index.js --preview",
+    "lint": "eslint --ext .js,.vue src"
+  },
+  "dependencies": {
+    "axios": "0.21.1",
+    "clipboard": "2.0.4",
+    "codemirror": "5.45.0",
+    "core-js": "^3.22.8",
+    "driver.js": "0.9.5",
+    "dropzone": "5.5.1",
+    "echarts": "3.8.5",
+    "element-ui": "2.13.2",
+    "file-saver": "2.0.1",
+    "fuse.js": "3.4.4",
+    "jquery": "^3.6.0",
+    "js-cookie": "2.2.0",
+    "jsonlint": "1.6.3",
+    "jszip": "3.2.1",
+    "normalize.css": "7.0.0",
+    "nprogress": "0.2.0",
+    "path-to-regexp": "2.4.0",
+    "screenfull": "4.2.0",
+    "script-loader": "0.7.2",
+    "sortablejs": "1.8.4",
+    "swiper": "3.4.2",
+    "tui-editor": "1.3.3",
+    "vue": "2.6.12",
+    "vue-count-to": "1.0.13",
+    "vue-router": "3.5.1",
+    "vue-splitpane": "1.0.4",
+    "vuedraggable": "2.20.0",
+    "vuex": "3.6.2",
+    "xlsx": "0.14.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/runtime": "^7.18.3",
+    "@vue/cli-plugin-babel": "4.4.4",
+    "@vue/cli-plugin-eslint": "4.4.4",
+    "@vue/cli-plugin-unit-jest": "4.4.4",
+    "@vue/cli-service": "4.4.4",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "autoprefixer": "9.5.1",
+    "babel-eslint": "10.1.0",
+    "babel-jest": "23.6.0",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-dynamic-import-node": "2.3.3",
+    "cache-loader": "^4.1.0",
+    "chalk": "2.4.2",
+    "chokidar": "2.1.5",
+    "connect": "3.6.6",
+    "eslint": "6.7.2",
+    "eslint-plugin-vue": "6.2.2",
+    "gsap": "^3.6.1",
+    "html-webpack-plugin": "3.2.0",
+    "husky": "1.3.1",
+    "lint-staged": "8.1.5",
+    "lodash": "^4.17.21",
+    "mockjs": "1.0.1-beta3",
+    "plop": "2.3.0",
+    "runjs": "4.3.2",
+    "sass": "1.26.2",
+    "sass-loader": "8.0.2",
+    "script-ext-html-webpack-plugin": "2.1.3",
+    "serve-static": "1.13.2",
+    "svg-sprite-loader": "4.1.3",
+    "svgo": "1.2.0",
+    "vue-template-compiler": "2.6.12",
+    "webpack": "^4.16.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "engines": {
+    "node": ">=10.19.0",
+    "npm": ">= 3.0.0"
+  },
+  "lint-staged": {
+    "src/**/*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}
+```
 
 
 

@@ -1492,7 +1492,7 @@ p::after{
 
 ```
 子元素选择器
-div > p > span{
+div > span{
     应用于所有被div包括的子span标签
 }
 
