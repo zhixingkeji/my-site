@@ -797,7 +797,42 @@ cnpm install mitt
 
 
 
-### 4.8 其他
+### 4.8 boostrape
+
+安装
+
+```
+cnpm i bootstrap@3
+cnpm i autoprefixer  
+cnpm i @popperjs/core
+cnpm i jquery
+```
+
+
+
+引入 main.js
+
+```
+import 'bootstrap'
+import $ from 'jquery'
+```
+
+
+
+组件中引入
+
+```
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.min.js'
+```
+
+
+
+
+
+
+
+### 4.9 其他
 
 ```json
 {
@@ -904,6 +939,10 @@ cnpm install mitt
   }
 }
 ```
+
+
+
+
 
 
 
