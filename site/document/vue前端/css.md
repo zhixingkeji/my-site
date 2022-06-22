@@ -124,21 +124,27 @@ color: #000,     	字体颜色
 
 可以指定多个字体，中间用逗号连接，优先使用第一个，若没有则向后延伸，如果名称中间有空格需要用引号引起来。
 
-```
+```css
 font-family：monospace； //等宽字体族
 font-family：serif； //衬线字体
 font-family：sans-serif；  //非衬线字体
 font-family："黑体"；  //中文黑体,需要用双引号包裹
 ```
 
+
+
 从服务器下载字体给用户使用，注意版权问题，你提供的字体源给用户，必须是免费开源的。
 
-```
-@font-face{
-font-family：“myfont”；
-src：url（“./”）；
+```css
+// src/assets/fonts/fonts.css
+
+@font-face {
+    font-family: "AlibabaPuHuiTiH";
+    src: url("./阿里巴巴普惠字体.ttf") format("truetype");
 }
-p{ font-family：myfont }
+
+// 组件中使用
+p { font-family: AlibabaPuHuiTiH }
 ```
 
 
@@ -199,6 +205,8 @@ vertical-align：top；  顶部对齐
 vertical-align：bottom；  底部对齐
 vertical-align：middle；  居中对齐
 vertical-align：100px；  值对齐
+
+line-height: 100px; //将行高设置为div的高度,也能居中对齐
 ```
 
 
@@ -302,6 +310,8 @@ overflow: inherit; #从父元素继承 overflow 属性的值
 
 
 text-overflow：ellipsis；
+
+
 
 
 
@@ -879,6 +889,32 @@ transition：height，2s； //只有高度
 
 
 
+### 6.3 常用开发动画
+
+1.图片上滑到指定位置
+
+
+
+
+
+2.无缝滚动图
+
+
+
+
+
+3.轮播图
+
+
+
+
+
+
+
+
+
+
+
 ## 第7章 浮动和布局
 
 ### 7.1 文档流
@@ -961,41 +997,50 @@ clear属性
 
 \- clear：both ，清除两侧最大的那个浮动的影响
 
+
+
+
+
 解决高度塌陷完美解决办法
 
-.box1:：after{
-
-content：’‘；
-
-display：table；
-
-clear：both；
-
+```css
+.box1:after{
+    content: '';
+    display: table;
+    clear: both;
 }
+```
+
+
 
 解决外边距重叠问题
 
-.box1:：before{
-
-content：’‘；
-
-display：table；
-
+```css
+.box1:before{
+    content: '';
+    display: table;
 }
+```
+
+
 
 同时解决外边距重叠和塌陷问题问题
 
-.box1:：before，
-
-.box1:：after{
-
-content：’‘；
-
-display：table；
-
-clear：both；
-
+```css
+.box1:before, .box1:after{
+	content: ’‘;
+	display：table;
+	clear：both;
 }
+```
+
+
+
+
+
+
+
+
 
 ## 第8章 盒模型
 
@@ -1039,6 +1084,16 @@ margin-buttom:100px
 
 
 
+**margin 塌陷**
+
+可以为父元素添加 overflow:hidden。
+
+
+
+
+
+
+
 ### 8.4 内边距
 
 ```css
@@ -1078,6 +1133,52 @@ border:red soild 2px  //简写模式
 
 }
 ```
+
+
+
+**用边框画图**
+
+更多https://blog.csdn.net/qq_36987708/article/details/122819586
+
+```scss
+// 正方形
+.zhengfangxing {
+    width: 10px;
+    height: 10px;
+    background: red;
+}
+
+//圆形
+.yuanxing {
+    
+}
+
+//菱形
+.lingxing {
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-bottom-color: #5E83FF;
+    position: relative;
+    top: 0;
+    left: 0;
+    
+    &:after {
+        content: '';
+        position: absolute;
+        left: -10px;
+        top: 10px;
+        width: 0;
+        height: 0;
+        border: 10px solid transparent;
+        border-top-color: #5E83FF;
+    }
+}
+```
+
+
+
+
 
 
 
@@ -1346,47 +1447,79 @@ right: 20px; //相对与其正常的位置向右偏移20px
 
 ### 10.1 响应式布局
 
+各种设备分辨率
+
+iphone6
+
+iphone7
+
+ipad
+
+ipad pro
+
+19寸电脑
 
 
 
+rem布局
+
+```
+对App.vue中设置html根元素的字体 @media
+
+//宽屏等比缩放
+4160-4480; fontsize: 325px;
+3840-4160; fontsize: 300px;
+3520-3840; fontsize: 270px;
+3200-3520; fontsize: 250px;
+2880-3200; fontsize: 225px;
+2560-2880; fontsize: 200px;
+2240-2560; fontsize: 175px;
+1920-2240; fontsize: 150px;
+1600-1920; fontsize: 125px;
+1280-1600; fontsize: 100px;
+
+//横版平板+窄屏
+960-1280: fontsize: 90px;
+
+//平板
+640-960: fontsize: 85px;
+
+//移动端
+320-640: fontsize: 80px;
+  0-320: fontsize: 75px;
+```
+
+
+
+设计稿相关
+
+移动端(0-400多) 设计稿 750px  参考iphone6(375x667) 使用vm单位
+
+平板端(768~1024px) 同移动端 参考ipad 使用vm单位   
+
+横版平板(1024px-1366px)和窄屏 电脑设计稿等比缩小 使用rem单位
+
+电脑端 设计稿 1440px  参考19寸屏幕
+
+演示屏幕 电脑设计稿等比放大 使用rem单位
 
    
+
+响应式布局
 
 ```html
 <head>
 	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0">
 </head>
+
 <style>
-    //超大电视
-    @media screen and (min-width: 2090px)(){
-        body{
-            background: pink;
-        }
-    }
-        
-      //移动端
-    @media screen and (max-width: 750px)(){
-        body{
-            background: blue;
-        }
-    }
-    
-       //平板端
-    @media screen and (min-width: 750) 
-        		  and (max-width: 960px){
-        body{
-            background: pink;
-        }
-    }
-    
-       //电脑端
-   	@media screen and (min-width: 960px) 
-        		  and (max-width: 1440px){
-        body{
-            background: pink;
-        }
-    }
-        
+  // 平板横屏+电脑屏 适配
+  @media screen and (min-width: 960px)  {
+  }
+
+  // 手机+平板 适配
+  @media screen  and (max-width: 960px)  {
+  }        
 </style>
 ```
 
@@ -1779,9 +1912,25 @@ float 塌陷
 
 
 
-margin 塌陷
+### 12.3 菜单固钉
 
-可以为父元素添加 overflow:hidden。
+左侧竖向菜单在指定容器内固钉,右侧瀑布流内容
+
+右侧滚动同时, 左侧随之切换到响应的菜单中
+
+
+
+
+
+
+
+### 12.4 内容居中在固定位置
+
+例如1440px的设计稿, 两边间距是200px, 内容区固定为1040px
+
+```scss
+margin: 0 calc((100% - 10.40rem) / 2);
+```
 
 
 
