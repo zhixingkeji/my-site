@@ -891,13 +891,76 @@ transition：height，2s； //只有高度
 
 ### 6.3 常用开发动画
 
-1.图片上滑到指定位置
+1.当图片出现在视野中, 开启动画上滑到指定位置, 
+
+css
+
+```scss
+//为图片添加样式
+.imgopen{
+      animation: slide-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940)  ;
+    }
+
+//图片进入动画
+@keyframes slide-top {
+     0% {
+        -webkit-transform: translateY(1.00rem);
+        transform: translateY(1.00rem);
+      }
+      100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+      }
+}
+```
+
+
+
+js
+
+```js
+  onMounted(()=>{
+      // 设置基本变量
+      var windowScrollTop = $(window).scrollTop();
+      var windowViewHeight = $(window).height();
+      
+      ///捕获需要监控的图片所在的容器
+      var elementArray = $('.HomeView-wrapper-3-2-left,.HomeView-wrapper-3-3-left,.HomeView-wrapper-3-4-left,.HomeView-wrapper-3-5-left,.HomeView-wrapper-3-6-left,.HomeView-wrapper-3-7-left');
+      // 响应缩放事件
+      $(window).resize(function() {
+        windowViewHeight = $(window).height();
+      });
+      // 响应滚动事件
+      $(window).scroll(function() {
+        windowScrollTop = $(window).scrollTop();
+        if (windowScrollTop != undefined && windowScrollTop != null &&
+            windowViewHeight != undefined &&
+            windowViewHeight != null &&
+            elementArray != undefined &&
+            elementArray != null) {
+          elementArray.each(function(index) {
+            if (elementArray.eq(index).offset().top >= windowScrollTop && elementArray.eq(index).offset().top <= windowScrollTop + windowViewHeight) {
+                
+                //处理逻辑 添加上动画类
+              elementArray.eq(index).addClass('imgopen');
+              console.log("出来了")
+            } else {
+              // 可能需要移除某些类 elementArray.eq(index).removeClass('imgopen');
+              console.log("离开了")
+            }
+          });
+        }
+      });
+    })
+```
 
 
 
 
 
-2.无缝滚动图
+2.单张长图无缝无限循环滚动
+
+构造两张长图片flex横放
 
 
 
@@ -1914,17 +1977,17 @@ float 塌陷
 
 ### 12.3 菜单固钉
 
-左侧竖向菜单在指定容器内固钉,右侧瀑布流内容
+左侧竖向菜单在指定容器内固钉,
 
-右侧滚动同时, 左侧随之切换到响应的菜单中
-
-
+右侧瀑布流内容, 右侧滚动同时, 左侧随之切换不同菜单
 
 
 
 
 
-### 12.4 内容居中在固定位置
+
+
+### 12.4 网页布局内容居中
 
 例如1440px的设计稿, 两边间距是200px, 内容区固定为1040px
 

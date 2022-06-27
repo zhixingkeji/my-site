@@ -607,9 +607,27 @@ r=4 ，w=2 ， x=1，r+w=6，r+x=5，wx=3，r+w+x=7
 
 
 
-## 第7章 ubuntu 特色
+## 第7章 ubuntu
 
-###  7.1 软件和服务指令
+### 7.1 云服务器连接
+
+1.创建密码
+
+阿里云控制台 远程连接 使用密码连接 设置密码 Wangle2018. 
+
+重启服务器
+
+
+
+2.允许root远程登录
+
+sudo vi /etc/ssh/sshd_config ，找到  PermitRootLogin 这项 将其改为 yes
+
+保存退出并重启ssh服务既可，sudo service ssh restart
+
+
+
+###  7.2 软件和服务指令
 
 ```sh
 # 软件更新
@@ -641,5 +659,5 @@ service nginx status
 
 
 
-## 第8章 centos 特色
+## 第8章 centos
 

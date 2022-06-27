@@ -212,3 +212,29 @@ notice {
 }
 ```
 
+
+
+
+
+## 第七章 vue中引入全局配置文件
+
+在配置文件 **vue.config.js** 中增加如下代码:
+
+```js
+module.exports = {
+    
+  chainWebpack: config => {
+    const oneOfsMap = config.module.rule("scss").oneOfs.store;
+    oneOfsMap.forEach(item => {
+      item
+        .use("sass-resources-loader")
+        .loader("sass-resources-loader")
+        .options({
+          // 公用scss
+          resources: "./src/css/global.scss"
+        })
+        .end();
+    });
+  }
+};
+```

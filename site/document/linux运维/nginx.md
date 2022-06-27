@@ -64,6 +64,14 @@ service nginx restart
 
 
 
+nginx卸载
+
+
+
+
+
+
+
 ### 1.3 配置文件 nginx.conf
 
 usr/local/nginx/conf/nginx.conf  所在目录

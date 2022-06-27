@@ -336,14 +336,106 @@ diff就会识别两者的不同，找到正确位置进行插入，
 
 普通样式与动态样式共存
 
-isActive ,hasError 是变量 保存的布尔值
-
 ```html
+//html
 <div
   class="static"
-  :class="{ active: isActive, 'text-danger': hasError }"
-></div>
+  :class="{ 'active': isActive, 'text-danger': hasError }">
+</div>
+
+//js
+const isActive = ref(true)
+const hasError = ref(false)
+
+//结果
+<div class="static active"></div>
 ```
+
+
+
+绑定数据对象
+
+```vue
+//html
+<div :class="classObject"></div>
+
+//js
+data: {
+  classObject: {
+    active: true,
+  }
+}
+```
+
+
+
+绑定计算属性
+
+```vue
+//html
+<div :class="classObject"></div>
+
+//js
+export default {
+  data() {
+    return {
+    isActive: true,
+    };
+  },
+  computed: {
+  classObject: function () {
+    return {
+      active: this.isActive,
+    }
+  }
+}
+
+//结果
+<div class="active"></div>
+```
+
+
+
+单纯数组
+
+```vue
+//html
+<div :class="[activeClass, errorClass]"></div>
+
+//js
+data() {
+    return {
+      activeClass: "active",
+      errorClass: "disActive"
+    };
+  },
+
+//结果
+<div class="active disActive"></div>
+```
+
+
+
+三元运算符
+
+```vue
+//html
+<div :class="[isActive?'active':'disActive']"></div>
+
+//js
+data() {
+    return {
+      isActive: false,
+    };
+},
+
+//结果
+<div class="disActive"></div>
+```
+
+
+
+
 
 
 
@@ -1206,3 +1298,33 @@ if(navigator.clipboard) {
 }
 ```
 
+
+
+### 8.4 生产和开发环境配置
+
+/ vue.config.js
+
+```js
+publicPath: process.env.NODE_ENV === 
+    'production' ? './' : '/'
+```
+
+
+
+
+
+### 8.5 升级为https连接
+
+public / index.html  
+
+```html
+<html>	
+    <head>
+		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    </head>
+</html>
+```
+
+
+
+踩坑记录, 加上这个meta以后 , 上传到云服务器后, 请求的资源都变成了https开头的, 但是nginx默认是http连接 , 所以访问不到

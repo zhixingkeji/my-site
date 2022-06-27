@@ -22,7 +22,7 @@ docker是基于go语言实现得到云开源项目。docker的理念就是一次
 
 ### 1.2 docker安装
 
-#### 1.2.1 centos版docker
+**centos版docker**
 
 
 
@@ -53,9 +53,7 @@ sudo yum install docker-ce docker-ce-cli containerd.io
 
 
 
-#### 1.2.2 ubuntu版docker
-
-
+ **ubuntu版docker**
 
 ```sh
 # 卸载旧版本
@@ -93,7 +91,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 
 
-#### 1.2.3 windows版docker
+**windows版docker**
 
 运行环境需要开启功能 hyper-v 或 wsl2
 
@@ -129,19 +127,33 @@ https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
 
 ### 1.3 基本应用安装
 
-nginx docker-compose.yml
+docker getting started
+
+```bash
+docker pull docker/getting-started
+docker run -d -p 80:80 --name demo docker/getting-started 
+```
+
+
+
+nginx
 
 ```shell
 docker pull nginx
 
-docker run -d --name nginx01 -p 80:80 \
--v /Users/wl/Projects/docker/nginx/html:/usr/share/nginx/html \
--v /Users/wl/Projects/docker/nginx/nginx.conf:/etc/nginx/nginx.conf \
--v /Users/wl/Projects/docker/nginx/logs:/var/log/nginx \
-nginx
+docker run  --name myNginx -d -p 8089:80 \
+-v /root/nginx/html:/usr/share/nginx/html \
+-v /root/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \ 
+-v /root/nginx/conf.d:/etc/nginx/conf.d  \
+-v /root/nginx/logs:/var/log/nginx nginx
 
-docker ps
+//注意
+虚拟化的nginx没有默认页面,保证速度快就删除了
 ```
+
+
+
+
 
 tomcat8  docker-compose.yml
 
@@ -168,33 +180,33 @@ jkd1.8  docker-compose.yml
 
 
 
-创建
+创建数据卷
 
-```bash
 docker volume create portainer_data
-```
 
 
 
-安装
+拉取镜像
 
-```bash
-docker run -d -p 8000:8000 -p 9443:9443 --name portainer \
-    --restart=always \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    -v portainer_data:/data \
-    portainer/portainer-ce:latest
-```
+docker pull portainer/portainer-ce:2.11.1
+
+
+
+创建容器
+
+docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 
 
 
 登录
 
-https://localhost:9443
+`https://localhost:9443`
 
 
 
 账号密码
+
+
 
 
 
@@ -232,7 +244,7 @@ https://localhost:9443
 
 `docker rmi -f $(docker images -aq)`  # 删除全部镜像
 
-​
+
 
 ## 第3章 容器
 
@@ -260,8 +272,9 @@ docker run -d -p 3357:3355 --name tomcat01 tomcat
 
 #### 3.2.1 指令选项
 
+docker run --name=mynginx -d --restart=always -p 8080:80 nginx
 
-docker run --name=mynginx  -d  -- restart=always nginx
+
 
 --name="name"   命名
 
@@ -343,13 +356,17 @@ docker ps
 
 #### 2.3.1 本地分享
 
-把已经配置好的容器 提交为新的容器
+把已经配置好的容器 提交为镜像
 
-docker commit -a "auther" -m "提交信息" 当前容器id myname:1.0
+docker commit -a "auther" -m "提交信息" 当前容器id myname:v0
 
-把容器保存为一个物理文件
 
-docker save -o xxx.tar myname:1.0
+
+把镜像保存为一个物理文件, 上传到云服务器
+
+docker save -o xxx.tar myname
+
+
 
 其他主机装载该容器
 
@@ -462,107 +479,247 @@ docker run -v 本机路径 : 容器内部路径...
 
 
 
-## 第5章 docker 三剑客
+## 第5章 Dockerfile 
 
-### 5.1 Dockerfile
+### 5.1 Dockerfile 简介
 
-#### 5.1.1 集成idea自动部署
+Dockerfile 是一个用来构建镜像的文本文件，文本内容包含了一条条构建镜像所需的指令和说明。
 
 
 
-docker开启远程访问
+### 5.2 指令详解
 
-vim /lib/systemd/system/docker.service
+COPY
 
+复制指令，从上下文目录中复制文件或者目录到容器里指定路径。
 
 
-修改配置
 
-将原有的 ExecStart 注释 , 新增一行
+ADD
 
-ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0.:2375 -H unix:///var/run/docker.sock
+ADD 指令和 COPY 的使用格类似（同样需求下，官方推荐使用 COPY）。
 
 
 
-重新加载配置文件
+CMD
+类似于 RUN 指令，用于运行程序，但二者运行的时间点不同
 
-systemctl daemon-reload
 
 
+VOLUME
+定义匿名数据卷。在启动容器时忘记挂载数据卷，会自动挂载到匿名卷。
 
-重启服务
 
-systemctl restart docker.service
 
 
 
-查看端口
+### 5.2 Dockerfile部署无后台的前端项目
 
-netstat -nlpt
+1.   配置vue.config.js
 
+```js
+  publicPath: process.env.NODE_ENV === 
+      'production' ? './' : '/',
+```
 
 
-查看是否生效
 
-curl http://127.0.0.1:2375/info
+2.   构建项目
 
+npm run build 
 
 
-开启阿里云防火墙
 
-2375端口
+3.   nginx配置
 
+项目根目录 下新增 nginx / default.conf 文件
 
+  ```
+  server {
+      listen       80;
+      server_name  localhost;
+      access_log  /var/log/nginx/host.access.log  main;
+      error_log  /var/log/nginx/error.log  error;
+      location / {
+          root   /usr/share/nginx/html;
+          index  index.html index.htm;
+          try_files $uri $uri/ /index.html;
+      }
+      error_page   500 502 503 504  /50x.html;
+      location = /50x.html {
+          root   /usr/share/nginx/html;
+      }
+  }
+  ```
 
-开启服务器防火墙
 
-sudo apt install firewalld
 
-firewall-cmd --list-ports
+4.   Dockerfile配置
 
-firewall-cmd --zone=public --add-port=2375/tcp --permanent
+根目录下新增 Dockerfile 文件
 
-firewall-cmd --reload
+```
+# 设置基础镜像
+FROM nginx
+# 定义作者
+MAINTAINER cuianbing <cuianbing@outlook.com>
+# 将dist文件中的内容复制到 /usr/share/nginx/html/ 这个目录下面
+COPY dist/  /usr/share/nginx/html/
+# 用本地的 default.conf 配置来替换nginx镜像里的默认配置
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+```
 
-firewall-cmd --list-ports
 
 
+5.   构建镜像
 
+```
+docker build -t xinyi .
+```
 
 
-IDEA安装插件
 
-docker
+6.   打包镜像
 
+```
+docker save -o xinyi.tar xinyi
+```
 
 
-配置pom插件
 
-docker-maven-plugin
+7.   上传到服务器
 
+使用 finallshell 或者 xftp 将文件上传到服务器
 
 
-开启密码验证
 
+8.   读取镜像
 
+```
+docker load -i xinyi.tar xinyi
+```
 
 
 
-#### 5.1.2 实例
+9.   运行项目
 
+```
+docker run -d -p 80:80 --name xinyi xinyi
 
+注意 每个服务器只有80端口能配置前端项目
+```
 
-### 5.2 Docker Compose
 
 
 
-#### 5.2.1 介绍
 
-#### 5.2.2 常用指令
 
-配置一下别名
 
-alise dockerc = docker-compose
+申请ssl证书
+
+阿里云 ssl工作台 领取免费证书
+
+
+
+项目升级为https
+
+```html
+// public index.html
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+```
+
+
+
+nginx配置https
+
+```
+```
+
+
+
+
+
+
+
+
+
+### 5.3 Dockerfile部署有后台的前端项目
+
+
+
+
+
+### 5.4 Dockerfile部署redis
+
+```dockerfile
+# 拉取redis镜像
+FROM redis
+
+# 复制配置文件到容器内
+COPY redis.conf /usr/local/etc/redis/redis.conf
+
+# 以配置文件形式启动redis
+CMD ["redis-server","/usr/local/etc/redis/redis.conf"]
+```
+
+
+
+
+
+
+
+### 5.5 Dockerfile部署mysql
+
+
+
+
+
+### 5.6 Dockerfile部署springboot项目
+
+
+
+```dockerfile
+# 设置基础镜像
+FROM openjdk:8-jdk-slim
+
+# 复制jar包到 /app.jar 
+COPY target/*.jar /app.jar
+# cmd覆盖 ENTRYPOINT追加
+ENTRYPOINT ["java","-jar","/app.jar"]
+
+```
+
+
+
+### 5.6 Dockerfile部署nginx
+
+```dockerfile
+# 设置基础镜像
+FROM nginx
+# 定义作者
+MAINTAINER cuianbing <cuianbing@outlook.com>
+# 将dist文件中的内容复制到 /usr/share/nginx/html/ 这个目录下面
+COPY dist/  /usr/share/nginx/html/
+# 用本地的 default.conf 配置来替换nginx镜像里的默认配置
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+```
+
+
+
+
+
+
+
+## 第6章 Docker Compose
+
+### 6.1 Docker Compose介绍
+
+
+
+### 6.2 常用指令
+
+alise dockerc = docker-compose # 配置一下别名
 
 
 
@@ -586,7 +743,7 @@ docker-compose restart nginx # 重启容器
 
 
 
-#### 5.2.3 实例 单独部署springboot后端项目
+### 6.3 实例 单独部署springboot后端项目
 
 打包 maven clean package
 
@@ -642,7 +799,7 @@ ENTRYPOINT ["java","-jar","/app.jar"]
 
 
 
-#### 5.2.3 实例 单独部署vue前端项目
+### 6.4 实例 单独部署vue前端项目
 
 项目打包 npm build
 
@@ -713,7 +870,9 @@ docker run --name nginx01 -p 80:80 -v /root/nginx/html/vuepress/:/usr/share/ngin
 
 
 
-### 5.3 Docker Swarm
+## 第7章 Docker Swarm
+
+### 7.1 Docker Swarm 简介
 
 docker的集群工具
 
@@ -721,9 +880,75 @@ docker的集群工具
 
 
 
-## 第6章 实际使用的中坑
 
-### 6.1 报错信息 : Error response from daemon: Get https://registry-1.docker.io/v2/....
+
+
+
+
+
+
+
+## 第8章 高级应用
+
+### 6.1 idea配置远程开发docker
+
+1.   进入到/lib/systemd/system路径下，然后编辑docker.service配置文件：
+
+```
+vim /lib/systemd/system/docker.service
+```
+
+
+
+2.   找到ExecStart所对应的行，修改为（Docker的远程访问接口为2375）：
+
+```
+ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
+```
+
+
+
+3.   保存并退出编辑后，重载守护进程以及重启Docker：
+
+```
+systemctl daemon-reload
+```
+
+```
+service docker restart
+```
+
+
+
+4.   可通过执行命令查看是否开放了远程访问端口：
+
+```
+systemctl status docker.service
+```
+
+
+
+5.   开启阿里云防火墙
+
+开启防火墙 tcp 2375端口
+
+
+
+6.   idea下载docker插件
+
+下载docker 插件后, 找到 设置 构建 执行 部署 docker
+
+新建一个docker 使用 tcp套接字连接 url为 tcp://39.107.251.205:2375 
+
+
+
+
+
+## 第9章 解决方案
+
+### 9.1 报错大全
+
+Error response from daemon: Get https://registry-1.docker.io/v2/....
 
 问题描述 : dns解析错误
 
@@ -732,4 +957,6 @@ docker的集群工具
 打开 vim /etc/resolv.conf
 
 新增  nameserver 8.8.8.8
+
+
 
