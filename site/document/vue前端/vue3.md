@@ -784,6 +784,19 @@ export default (app) => {
 
 
 
+修改组件样式配色等
+
+```scss
+// 样式穿透语法 ::v-deep
+// 可以穿透scoped作用域 
+::v-deep .el-tabs__active-bar{
+    //使用开发者工具查看当前class
+  background-color:  #4880FF!important;
+}
+```
+
+
+
 
 
 
@@ -922,9 +935,84 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 
 
 
+### 4.9 swiper
+
+安装
+
+```
+cnpm i swiper vue-awesome-swiper --save
+```
 
 
-### 4.9 其他
+
+使用
+
+```vue
+<template>
+	  <swiper
+        :slidesPerView="1"
+        :spaceBetween="30"
+        :loop="true"
+        :pagination="{
+          clickable: true,
+        }"
+        :navigation="true"
+        :modules="modules"
+        :autoplay="{
+          delay: 3000,
+          disableOnInteraction: false,         
+        }"
+        class="mySwiper"
+    >
+    	<swiper-slide>s1</swiper-slide>
+    	<swiper-slide>s1</swiper-slide>
+    </swiper>
+</template>
+
+<script>
+import {Swiper, SwiperSlide} from "swiper/vue";
+import { Autoplay } from 'swiper';
+import {Pagination, Navigation} from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+    
+export default {
+  name: "Rotation",
+  components: {
+    Swiper,
+    SwiperSlide
+  },
+  setup() {
+  	const modules = [Pagination, Navigation, Autoplay]
+  },
+  return {
+      modules
+  }  
+</script>
+
+<style scoped lang="scss">
+.Rotation {
+  //容器0 轮播图
+  .mySwiper{
+    width: 100%;
+    height: fit-content;
+    //margin: 0 calc((100% - 10.40rem) / 2);
+
+    img {
+      width: 100%;
+      //height: 6rem;
+    }
+  }
+}
+</style>
+```
+
+
+
+
+
+### 4.10 其他
 
 ```json
 {

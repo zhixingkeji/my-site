@@ -596,7 +596,7 @@ docker save -o xinyi.tar xinyi
 8.   读取镜像
 
 ```
-docker load -i xinyi.tar xinyi
+docker load -o xinyi.tar
 ```
 
 
@@ -604,7 +604,7 @@ docker load -i xinyi.tar xinyi
 9.   运行项目
 
 ```
-docker run -d -p 80:80 --name xinyi xinyi
+docker run -d -p 80:80 --name xinyicon xinyi
 
 注意 每个服务器只有80端口能配置前端项目
 ```

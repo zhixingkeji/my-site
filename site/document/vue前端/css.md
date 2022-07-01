@@ -122,30 +122,52 @@ color: #000,     	字体颜色
 
 （2）字体族
 
-可以指定多个字体，中间用逗号连接，优先使用第一个，若没有则向后延伸，如果名称中间有空格需要用引号引起来。
+-   指定多个字体
+
+中间用逗号连接，优先使用第一个，若没有则向后延伸，如果名称中间有空格需要用引号引起来。
 
 ```css
 font-family：monospace； //等宽字体族
 font-family：serif； //衬线字体
 font-family：sans-serif；  //非衬线字体
-font-family："黑体"；  //中文黑体,需要用双引号包裹
+font-family："黑体"；  //中文或者有空格,需要用双引号包裹
+
+生产通用模板
+font-family: 'Microsoft Yahei', 'PingFang SC', 'Avenir', 'Segoe UI', 'Hiragino Sans GB', STHeiti, 'Microsoft Sans Serif', 'WenQuanYi Micro Hei', sans-serif !important;
 ```
 
 
 
-从服务器下载字体给用户使用，注意版权问题，你提供的字体源给用户，必须是免费开源的。
+-   从服务器下载字体
+
+给用户使用，注意版权问题，你提供的字体源给用户，必须是免费开源的。
+
+创建文件 src/assets/fonts/fonts.css
 
 ```css
-// src/assets/fonts/fonts.css
-
 @font-face {
     font-family: "AlibabaPuHuiTiH";
     src: url("./阿里巴巴普惠字体.ttf") format("truetype");
 }
+```
 
-// 组件中使用
+
+
+全局引入 main.js
+
+```js
+import '@/assets/fonts/fonts.css'
+```
+
+
+
+组件中使用
+
+```scss
 p { font-family: AlibabaPuHuiTiH }
 ```
+
+
 
 
 
