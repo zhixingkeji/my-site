@@ -596,7 +596,7 @@ docker save -o xinyi.tar xinyi
 8.   读取镜像
 
 ```
-docker load -o xinyi.tar
+docker load -i xinyi.tar
 ```
 
 
