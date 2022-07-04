@@ -564,6 +564,8 @@ export default {
 
 ### 3.1 组件注册
 
+组件内引用
+
 ```js
 import ComponentA from './ComponentA.vue'
 
@@ -574,6 +576,20 @@ export default {
   // ...
 }
 ```
+
+
+
+全局注册组件
+
+```js
+//main.js
+import Btns from "@/components/Btns";
+app.component("Btns",Btns)
+```
+
+
+
+
 
 
 
@@ -796,6 +812,40 @@ export default (app) => {
 ```
 
 
+
+dialog对话框 禁止页面滚动
+
+```vue
+<div @mousewheel="forbidScroll">
+    <el-dialog>...</el-dialog>
+</div>
+
+// 禁用鼠标滚动 达到不能滚动页面的效果
+setup(){
+    function forbidScroll(e) {
+     	e.preventDefault && e.preventDefault();
+     	e.returnValue = false;
+      	e.stopPropagation && e.stopPropagation();
+      	return false;
+    }   
+}
+```
+
+
+
+回到顶部组件
+
+```vue
+ <el-backtop :bottom="100">...</el-backtop>
+```
+
+
+
+树形控件
+
+```vue
+ <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick" />
+```
 
 
 
@@ -1198,7 +1248,52 @@ axios.all()  //执行并发请求
 
 
 
-动态路由遍历菜单
+动态路由
+
+```js
+// router.js
+{path: goods/:id}
+
+//组件中
+const id = route.param.id
+```
+
+
+
+
+
+路由导航
+
+```js
+router.push("/home")
+```
+
+
+
+
+
+路由元信息
+
+```js
+// router.js
+{
+    path: '/home',
+        name: 'home',
+        component: HomeView,
+        meta:{
+            index: 0
+    },
+}
+
+```
+
+
+
+
+
+路由拦截认证
+
+
 
 
 
@@ -1214,6 +1309,43 @@ export default {
   }
 }
 ```
+
+
+
+路由跳转后不在顶部解决方案
+
+```js
+router.afterEach((to, from, next) => {
+  console.log(to, from, next)
+  console.log(route.meta.index)
+  if (route.meta.index === 100){
+    window.scrollTo(0, 0)
+  }
+})
+```
+
+
+
+内外部合并路由跳转
+
+```js
+//产品矩阵的路由跳转按钮
+const routeClick = (url)=> {
+	//通过是否包含http关键字判断内外部链接
+	if(url.search("http") !== -1){
+		//外部链接
+		window.open(url);
+	}else{
+		//内部链接
+		router.push(url)
+    }
+}
+```
+
+
+
+
+
 
 
 ## 第7章 vuex
@@ -1416,3 +1548,166 @@ public / index.html
 
 
 踩坑记录, 加上这个meta以后 , 上传到云服务器后, 请求的资源都变成了https开头的, 但是nginx默认是http连接 , 所以访问不到
+
+
+
+### 8.6 回到顶部组件
+
+```vue
+<!--    锚点-->
+<div id="head"></div>
+
+<!--    按钮-->
+<el-button @click="gohead('#head')" >回到顶部</el-button>
+
+<!--    js-->
+const gohead = (id)=>{
+    console.log("回到顶部")
+    document.querySelector(id).scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "nearest",
+	});
+}
+```
+
+
+
+
+
+### 8.7 路由切换时的页面动画
+
+路由视图
+
+```vue
+<router-view v-slot="{ Component }">
+	<transition :name="silderName">
+		<component :is="Component" />
+	</transition>
+</router-view>
+```
+
+
+
+添加路由元信息
+
+```js
+  {
+    path:'/app', 
+    name:"views",  
+    component: views, 
+    meta:{ index: 0 },
+  },
+  {
+    path: '/choiceAddress', 
+    name: 'choiceAddress',  
+    component: addrespage,
+    meta:{ index:  1 },
+  },
+```
+
+
+
+监听 route
+
+```js
+// 类名
+let silderName = ref("slide-left")
+
+//旧路由
+let oldroute = ref();
+oldroute.value = route.meta.index;
+
+
+watch(route,(to,from)=>{
+      console.log("当前路由",route.meta.index)
+      console.log("旧路由",oldroute.value)
+
+      //判断为前进、还是后退，同时更改类名
+      if(route.meta.index < oldroute.value){
+        silderName.value = 'slide-left';
+      }else{
+        silderName.value = 'slide-right';
+      }
+
+      //更新旧路由
+      oldroute.value = route.meta.index;
+    })
+```
+
+
+
+样式
+
+```css
+.slide-left-enter-active, .slide-right-enter-active{
+  transition: all .5s;
+}
+
+.slide-left-enter-from, .slide-left-leave-to {
+  transform: translateX(-100vw);
+}
+
+.slide-right-enter-from, .slide-right-leave-to{
+  transform: translateX(100vw);
+}
+```
+
+
+
+
+
+### 8.8 网页换肤
+
+
+
+
+
+### 8.9 全局挂载函数
+
+src/tools/tools.js
+
+```js
+//产品矩阵的路由跳转按钮
+import router from "@/router";
+
+export const routeClick = (url)=> {
+  url = url + ""
+  //点击立即咨询
+  if(url.search("http") !== -1){
+    window.open(url);
+  }else{
+    //点击了解更多按钮
+    router.push(url)
+  }
+}
+```
+
+
+
+main.js
+
+```js
+import {routeClick} from './tools/tools.js'
+app.config.globalProperties.routeClick = routeClick;
+```
+
+
+
+组件中使用
+
+```js
+<el-button @click="routeClick('https://baidu.com')"
+>免费体验</el-button>
+
+import {getCurrentInstance} from "vue";
+
+setup(){
+ 	const { proxy } = getCurrentInstance();//关键代码
+    const routeClick = proxy.routeClick;//关键代码
+    return {
+      routeClick
+    }
+}
+```
+

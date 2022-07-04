@@ -913,7 +913,7 @@ transition：height，2s； //只有高度
 
 ### 6.3 常用开发动画
 
-1.当图片出现在视野中, 开启动画上滑到指定位置, 
+-   当图片出现在视野中, 开启动画上滑到指定位置, 
 
 css
 
@@ -980,7 +980,7 @@ js
 
 
 
-2.单张长图无缝无限循环滚动
+-   单张长图无缝无限循环滚动
 
 构造两张长图片flex横放
 
@@ -988,7 +988,50 @@ js
 
 
 
-3.轮播图
+-   轮播图
+
+
+
+
+
+-   双向滚动菜单
+
+```js
+  //瀑布流2 菜单栏第二项
+    onMounted(()=>{
+      // 设置基本变量
+      var windowScrollTop = $(window).scrollTop();
+      var windowViewHeight = $(window).height();
+        // 一个空的锚点
+      var elementArray = $('#case2');
+      // 响应缩放事件
+      $(window).resize(function() {
+        windowViewHeight = $(window).height();
+      });
+      // 响应滚动事件
+      $(window).scroll(function() {
+        windowScrollTop = $(window).scrollTop();
+        if (windowScrollTop != undefined && windowScrollTop != null &&
+            windowViewHeight != undefined &&
+            windowViewHeight != null &&
+            elementArray != undefined &&
+            elementArray != null) {
+          elementArray.each(function(index) {
+            if (elementArray.eq(index).offset().top >= windowScrollTop && elementArray.eq(index).offset().top <= windowScrollTop + windowViewHeight) {
+                //菜单栏2添加样式
+              $(".menu-item-2").addClass("menuselect")
+                
+                //取消菜单栏1和3的样式
+              $(".menu-item-1,.menu-item-3").removeClass("menuselect")
+              // elementArray.eq(index).addClass('imgopen');
+              console.log("出来了")
+            }
+          });
+        }
+      });
+    })
+
+```
 
 
 
